@@ -19,7 +19,7 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/idea',
+      path: '/idea/:idea_id',
       name: 'Idea',
       component: Idea,
     },

@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view/>
+    <v-container class="main-content">
+      <v-fade-transition mode="out-in">
+          <router-view/>
+        </v-fade-transition>
+    </v-container>
     <Footer />
   </div>
 </template>
@@ -20,4 +24,7 @@ export default {
 </script>
 
 <style lang="stylus">
+.main-content
+  margin-top 60px
 </style>
+

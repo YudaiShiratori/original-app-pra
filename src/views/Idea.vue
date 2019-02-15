@@ -1,15 +1,22 @@
 <template>
   <div class="idea">
     <h2>ビジネスアイデア</h2>
-    <!-- <IdeaView />
-    <Opininon /> -->
+    <ViewIdea />
+    <!-- <Opininon /> -->
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-@Component
-
-export default class Idea extends Vue {}
+<script>
+import ViewIdea from '@/components/ViewIdea'
+export default {
+  name: 'Idea',
+  props: ['idea_id'],
+  components: {
+    ViewIdea,
+  },
+  data() {
+    return {
+    }
+  },
+}
 </script>

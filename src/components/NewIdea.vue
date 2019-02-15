@@ -11,7 +11,7 @@
         <input type="text" name="content" v-model="content">
       </div>
       <div class="field center">
-        <button>
+        <button class="btn pink">
           Share!
         </button>
       </div>
@@ -30,24 +30,25 @@ export default {
     return {
       title: null,
       content: null,
+      feedback: null,
     }
   },
   methods: {
     shareIdea() {
       console.log(this.title, this.content)
-      if(this.title && this.content) {
+      if (this.title && this.content) {
         db.collection('ideas').add({
           title: this.title,
-          content: this.content
+          content: this.content,
         }).catch(err => {
           console.log(err)
         })
         this.title = null
         this.content = null
       } else {
-        console.log(err)
+        this.feedback = 'error'
       }
-    }
-  }
+    },
+  },
 }
 </script>

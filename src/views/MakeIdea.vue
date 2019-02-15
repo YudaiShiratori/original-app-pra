@@ -10,12 +10,12 @@ import NewIdea from '@/components/NewIdea'
 export default {
   name: 'MakeIdea',
   components: {
-    NewIdea
+    NewIdea,
   },
-  data () {
+  data() {
     return {
     }
-  }
+  },
 }
 
 </script>

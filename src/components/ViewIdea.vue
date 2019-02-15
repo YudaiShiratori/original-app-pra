@@ -1,13 +1,13 @@
 <template>
-  <div class="all-idea">
+  <div class="idea-view">
     <v-flex class="container__body">
-      <h2>みんなのアイデア</h2>
+      <h2>Idea-view {{ ideaId }}</h2>
       <v-flex xs12 sm6 offset-sm3>
-        <v-container v-for="idea in ideas" :key="idea.id">
+        <v-container>
           <v-card>
             <v-card-title>
-              <router-link :to="{ name: 'Idea', params: { idea_id: idea.id } }">Idea</router-link>
-              <h1>{{ idea.title }}</h1>
+              <h2>{{ idea.title }}</h2>
+              <p>{{ idea.content }}</p>
             </v-card-title>
           </v-card>
         </v-container>
@@ -20,22 +20,21 @@
 import db from '@/firebase/firebaseConfig'
 
 export default {
-  name: 'AllIdea',
+  name: 'ViewIdea',
+  props: ['idea_id'],
   data() {
     return {
-      ideas: [],
+      ideaId: this.$route.params.idea_id
     }
   },
   created() {
-    db.collection('ideas').get().
-    then(snapshot => {
+    let ref = db.collection('ideas').where('id', '==', this.$route.params.idea_id)
+    ref.get().then(snapshot => {
       snapshot.forEach(doc => {
         let idea = doc.data()
-        idea.id = doc.id
-        this.ideas.push(idea)
+        this.idea.id = doc.id
       })
     })
   },
 }
-
 </script>

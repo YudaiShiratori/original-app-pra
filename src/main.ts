@@ -7,11 +7,6 @@ import colors from 'vuetify/es5/util/colors'
 
 Vue.config.productionTip = false;
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app');
 
 Vue.use(Vuetify, {
   theme: {
@@ -29,3 +24,10 @@ Vue.use(Vuetify, {
     themeVariations: ['original', 'secondary'],
   },
 })
+
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount('#app');
+
