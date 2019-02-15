@@ -1,15 +1,21 @@
 <template>
   <div class="home">
     <h2>僕らのビジネスアイデア道場</h2>
-    <!-- <RecentIdea />
-    <AllIdea /> -->
+    <!-- <RecentIdea /> -->
+    <AllIdea />
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-@Component
-
-export default class Home extends Vue {}
+<script>
+import AllIdea from '@/components/AllIdea'
+export default {
+  name: 'Home',
+  components: {
+    AllIdea
+  },
+  data() {
+    return {
+    } 
+  }
+}
 </script>
