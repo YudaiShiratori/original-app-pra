@@ -4,8 +4,15 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-@Component
-export default class AllIdea extends Vue {}
+<script>
+
+export default {
+  name: 'AllIdea',
+  data () {
+    return {
+
+    }
+  }
+}
+
 </script>
