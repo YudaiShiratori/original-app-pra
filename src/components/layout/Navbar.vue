@@ -1,8 +1,7 @@
 <template>
   <div class="navbar">
-    <nav class="deep-purple darken-1">
+    <nav>
       <div class="container">
-        <a href="" class="brand-logo">GeoNinjas</a>
         <ul class="right">
           <li>
             <router-link :to="{ name: 'Login' }">Login</router-link>

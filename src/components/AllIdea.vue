@@ -1,13 +1,18 @@
 <template>
   <div class="all-idea">
-    <h2>みんなのアイデア</h2>
-    <div v-for="idea in ideas" :key="idea.id">
+    <v-flex class="container__body">
+      <h2>みんなのアイデア</h2>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card>
-          <h3>{{ idea.title }}</h3>
-        </v-card>
+        <v-container v-for="idea in ideas" :key="idea.id">
+          <v-card>
+            <v-card-title>
+              <router-link :to="{ name: 'Idea' }">Idea</router-link>
+              <h1>{{ idea.title }}</h1>
+            </v-card-title>
+          </v-card>
+        </v-container>
       </v-flex>
-    </div>
+    </v-flex>
   </div>
 </template>
 
