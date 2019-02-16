@@ -4,11 +4,11 @@
       <h2>みんなのアイデア</h2>
       <v-flex xs12 sm6 offset-sm3>
         <v-container v-for="idea in ideas" :key="idea.id">
-          <v-card>
-            <v-card-title>
+          <v-card min-height="250px" color="green" hover>
+            <v-layout> 
               <router-link :to="{ name: 'Idea', params: { idea_id: idea.id } }">Idea</router-link>
               <h1>{{ idea.title }}</h1>
-            </v-card-title>
+            </v-layout>
           </v-card>
         </v-container>
       </v-flex>
@@ -37,5 +37,4 @@ export default {
     })
   },
 }
-
 </script>
