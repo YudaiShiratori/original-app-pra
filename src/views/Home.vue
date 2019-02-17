@@ -11,11 +11,11 @@ import AllIdea from '@/components/AllIdea'
 export default {
   name: 'Home',
   components: {
-    AllIdea
+    AllIdea,
   },
   data() {
     return {
-    } 
-  }
+    }
+  },
 }
 </script>

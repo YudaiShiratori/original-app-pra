@@ -5,6 +5,7 @@ import Idea from './views/Idea.vue';
 import MakeIdea from './views/MakeIdea.vue';
 import Signup from './views/auth/Signup.vue';
 import Login from './views/auth/Login.vue';
+import Pra from '@/components/Pra.vue';
 
 
 Vue.use(Router);
@@ -15,11 +16,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Home,
     },
     {
-      path: '/idea',
+      path: '/idea/:idea_id',
       name: 'Idea',
       component: Idea,
     },
@@ -37,6 +38,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/pra',
+      name: 'Pra',
+      component: Pra,
     },
   ],
 });

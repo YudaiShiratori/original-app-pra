@@ -1,21 +1,29 @@
 <template>
-  <div class="new-idea container">
-    <form @submit.prevent="shareIdea">
-      <h2>あなたのアイデア</h2>
-      <div class="field">
-        <label for="title">あなたのビジネスを一言で説明してください：</label>
-        <input type="text" name="title" v-model="title">
-      </div>
-      <div class="field">
-        <label for="content">具体的な内容：</label>
-        <input type="text" name="content" v-model="content">
-      </div>
-      <div class="field center">
-        <button>
-          Share!
-        </button>
-      </div>
-    </form>
+  <div class="new-idea">
+    <v-flex class="container__body">
+      <p>{{ this.name }}</p>
+      <v-flex xs12 sm6 offset-sm3>
+          <v-form @submit.prevent="shareIdea">
+            <v-container xs12 sm12 style="padding: 0;">
+              <v-flex xs12>
+                <h2>あなたのアイデア</h2>
+                <v-text-field
+                  label="コンセプト"
+                  placeholder="あなたのビジネスを一言で説明してください："
+                  outline
+                  v-model="title"
+                ></v-text-field>
+                <v-textarea
+                  outline
+                  name="content"
+                  label="具体的な内容："
+                  rows="30"
+                ></v-textarea>
+                </v-flex>
+              </v-container>
+          </v-form>
+      </v-flex>
+    </v-flex>
   </div>
 </template>
 
@@ -30,24 +38,25 @@ export default {
     return {
       title: null,
       content: null,
+      feedback: null,
     }
   },
   methods: {
     shareIdea() {
       console.log(this.title, this.content)
-      if(this.title && this.content) {
+      if (this.title && this.content) {
         db.collection('ideas').add({
           title: this.title,
-          content: this.content
+          content: this.content,
         }).catch(err => {
           console.log(err)
         })
         this.title = null
         this.content = null
       } else {
-        console.log(err)
+        this.feedback = 'error'
       }
-    }
-  }
+    },
+  },
 }
 </script>

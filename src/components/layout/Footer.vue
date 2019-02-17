@@ -1,16 +1,25 @@
 <template>
   <div class="footer">
-    <p>footer</p>
+    <v-footer
+      color='gray'
+      app>
+      <span>&copy; {{ footarTitle }}</span>
+    </v-footer>
   </div>
 </template>
+
+
 
 <script>
 export default {
   name: 'Footer',
   data() {
-    return {     
+    return {
+      footarTitle: 'ourBusinessIdea'
     }
   }
 }
 </script>
 
+<style lang="stylus" scoped>
+</style>

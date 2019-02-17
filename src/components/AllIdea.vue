@@ -1,13 +1,20 @@
 <template>
   <div class="all-idea">
-    <h2>みんなのアイデア</h2>
-    <div v-for="idea in ideas" :key="idea.id">
+    <v-flex class="container__body">
+      <h2>みんなのアイデア</h2>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card>
-          <h3>{{ idea.title }}</h3>
-        </v-card>
+        <v-container v-for="idea in ideas" :key="idea.id">
+          <span>
+            <v-card min-height="250px" color="green" hover>
+              <v-layout> 
+                <router-link :to="{ name: 'Idea', params: { idea_id: idea.id } }">Idea</router-link>
+                <h1>{{ idea.title }}</h1>
+              </v-layout>
+            </v-card>
+          </span>
+        </v-container>
       </v-flex>
-    </div>
+    </v-flex>
   </div>
 </template>
 
@@ -16,9 +23,9 @@ import db from '@/firebase/firebaseConfig'
 
 export default {
   name: 'AllIdea',
-  data () {
+  data() {
     return {
-      ideas: []
+      ideas: [],
     }
   },
   created() {
@@ -30,7 +37,6 @@ export default {
         this.ideas.push(idea)
       })
     })
-  }
+  },
 }
-
 </script>
