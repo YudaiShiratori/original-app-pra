@@ -8,7 +8,7 @@
       dark
       v-model="isDrawer"
       class="blue lighten-3"
-      style="width: 200px;">
+      style="width: 220px;">
       <v-container
         fluid
         style="min-height: 0;"
@@ -61,6 +61,10 @@ export default {
         {
           label: '新規登録',
           to: 'Signup',
+        },
+        {
+          label: 'みんなのアイデア',
+          to: 'Home',
         },
         {
           label: 'アイデア投稿',

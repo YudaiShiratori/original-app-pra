@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <v-container class="main-content">
+    <v-container class="main-content" style="text-align: center;">
       <v-fade-transition mode="out-in">
         <router-view/>
       </v-fade-transition>
