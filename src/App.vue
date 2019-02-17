@@ -3,8 +3,8 @@
     <Navbar />
     <v-container class="main-content">
       <v-fade-transition mode="out-in">
-          <router-view/>
-        </v-fade-transition>
+        <router-view/>
+      </v-fade-transition>
     </v-container>
     <Footer />
   </div>
@@ -27,4 +27,3 @@ export default {
 .main-content
   margin-top 60px
 </style>
-

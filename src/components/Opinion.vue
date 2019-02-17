@@ -3,11 +3,11 @@
     <h2 class="center teal-text">Chat {{ this.name }}</h2>
     <div class="card">
       <div class="card-content">
-        <ul class="messages" v-chat-scroll>
+        <ul class="messages">
           <li v-for="message in messages" :key="message.id">
-            <span class="teal-text">{{ message.name }}</span>
+            <!-- <span class="teal-text">{{ message.name }}</span> -->
             <span class="grey-text text-darken-3">{{ message.content }}</span>
-            <span class="grey-text time">{{ message.timestamp }}</span>
+            <!-- <span class="grey-text time">{{ message.timestamp }}</span> -->
           </li>
         </ul>
       </div>
@@ -35,7 +35,8 @@ export default {
     }
   },
   created () {
-    let ref = db.collection('messages').orderBy('timestamp')
+    let ref = db.collection('messages')
+    // .orderBy('timestamp')
 
     ref.onSnapshot( snapshot => {
       console.log(snapshot.docChanges())
