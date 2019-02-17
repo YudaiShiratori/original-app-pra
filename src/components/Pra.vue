@@ -1,75 +1,41 @@
 <template>
-  <v-form>
-    <v-container>
-      <v-layout row wrap>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Regular"
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Regular"
-            placeholder="Placeholder"
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Solo"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Solo"
-            placeholder="Placeholder"
-            solo
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Box"
-            box
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Box"
-            placeholder="Placeholder"
-            box
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Outline"
-            outline
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex xs12 sm6 md3>
-          <v-text-field
-            label="Outline"
-            placeholder="Placeholder"
-            outline
-          ></v-text-field>
-        </v-flex>
-
-        <v-flex style="margin: 16px;">
-          <v-carousel>
-            <v-carousel-item v-for="(item, index) in Data" :key="index" :title="item.title"/>
-          </v-carousel>
-        </v-flex>
-
-      </v-layout>
-    </v-container>
-  </v-form>
+  
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
+      <v-flex xs6>
+        <v-textarea
+          name="input-7-1"
+          label="Default style"
+          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+          hint="Hint text"
+        ></v-textarea>
+      </v-flex>
+      <v-flex xs6>
+        <v-textarea
+          solo
+          name="input-7-4"
+          label="Solo textarea"
+          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+        ></v-textarea>
+      </v-flex>
+      <v-flex xs6>
+        <v-textarea
+          box
+          name="input-7-4"
+          label="Box textarea"
+          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+        ></v-textarea>
+      </v-flex>
+      <v-flex xs6>
+        <v-textarea
+          outline
+          name="input-7-4"
+          label="Outline textarea"
+          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+        ></v-textarea>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
