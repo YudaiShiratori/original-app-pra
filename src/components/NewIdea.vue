@@ -22,15 +22,13 @@
               ></v-textarea>
               </v-flex>
               <v-flex xs12>
-                {{ title }}
-                {{ content }}
+              <p v-if="feedback">{{ feedback }}</p>
               <v-btn
                 color="red"
                 class="white--text"
                 @click.prevent="shareIdea">
                 アイデアをシェア
               </v-btn>
-              <p v-if="feedback">{{ feedback }}</p>
               </v-flex>
             </v-container>
           </v-form>
