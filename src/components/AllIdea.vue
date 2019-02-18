@@ -7,7 +7,7 @@
           <span>
             <v-card min-height="250px" color="green" hover>
               <v-layout> 
-                <router-link :to="{ name: 'Idea', params: { idea_id: idea.id } }">Idea</router-link>
+                <router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">Idea</router-link>
                 <h1>{{ idea.title }}</h1>
               </v-layout>
             </v-card>

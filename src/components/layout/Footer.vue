@@ -3,19 +3,17 @@
     <v-footer
       color='gray'
       app>
-      <span>&copy; {{ footarTitle }}</span>
+      <span>&copy; {{ footerTitle }}</span>
     </v-footer>
   </div>
 </template>
-
-
 
 <script>
 export default {
   name: 'Footer',
   data() {
     return {
-      footarTitle: 'ourBusinessIdea'
+      footerTitle: 'ourBusinessIdea'
     }
   }
 }
