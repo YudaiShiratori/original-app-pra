@@ -25,5 +25,6 @@ export default {
 
 <style lang="stylus">
 .main-content
-  margin-top 60px
+  margin-top 90px
+  margin-bottom 60px
 </style>
