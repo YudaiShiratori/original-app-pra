@@ -2,7 +2,7 @@
   <div class="new-idea">
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
-          <v-form @submit.prevent="shareIdea">
+          <v-form ref="form">
             <v-container xs12 sm12 style="padding: 0;">
               <h2>あなたのアイデア</h2>
               <v-flex xs12>
@@ -27,9 +27,10 @@
               <v-btn
                 color="red"
                 class="white--text"
-                @click="submit">
+                @click.prevent="shareIdea">
                 アイデアをシェア
               </v-btn>
+              <p v-if="feedback">{{ feedback }}</p>
               </v-flex>
             </v-container>
           </v-form>
@@ -53,7 +54,7 @@ export default {
     }
   },
   methods: {
-    shareIdea() {
+    shareIdea: function(event) {
       console.log(this.title, this.content)
       if (this.title && this.content) {
         db.collection('ideas').add({
