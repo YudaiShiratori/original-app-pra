@@ -9,6 +9,7 @@
               <v-layout>
                 <router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">Idea</router-link>
                 <h1>{{ idea.title }}</h1>
+                <p>{{ idea.id }}</p>
               </v-layout>
             </v-card>
           </span>

@@ -3,8 +3,8 @@
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
         <h2>idea</h2>
-        {{ idea.id }}
-        {{ idea }}
+        <p>{{ idea.id }}</p>
+        <p>{{ idea.title }}</p>
         <!-- <Opinion /> -->
       </v-flex>
     </v-flex>
@@ -22,17 +22,14 @@ export default {
   // },
   data() {
     return {
-      idea: {}
     }
   },
   created() {
-    // this.id = this.$route.params.id
-    db.collection('ideas').where('id', '==', this.$route.params.id)
+    db.collection('ideas').where('uid', '==', this.$route.params.id)
     .get().then(snapshot => {
       snapshot.forEach(doc => {
         let idea = doc.data()
-        console.log(doc.data())
-        this.idea.id = doc.id
+        this.idea.id = doc.uid
       })
     })
   },
