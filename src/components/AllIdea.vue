@@ -61,4 +61,3 @@ export default {
   font-size 80px
   color yellow
 </style>
-
