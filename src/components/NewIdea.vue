@@ -107,16 +107,19 @@ export default {
         }).catch(err => {
           console.log(err)
         })
-        this.title = null
-        this.contentMain = null
-        this.contentSocialPoint = null,
-        this.contentBusinessPoint = null,
-        this.contentInnovationPoint1 = null,
-        this.contentInnovationPoint2 = null,
-        this.contentInnovationPoint3 = null
+        clear()
       } else {
         this.feedback = 'error'
       }
+    },
+    clear() {
+      this.title = null
+      this.contentMain = null
+      this.contentSocialPoint = null,
+      this.contentBusinessPoint = null,
+      this.contentInnovationPoint1 = null,
+      this.contentInnovationPoint2 = null,
+      this.contentInnovationPoint3 = null
     },
   },
 }
