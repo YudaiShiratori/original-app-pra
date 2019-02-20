@@ -14,13 +14,11 @@
               ></v-text-field>
               </v-flex>
               <v-flex xs12>
-              </v-flex>
-              <v-flex xs12>
               <v-textarea
                 outline
                 label="具体的な内容："
                 rows="30"
-                v-model="content"
+                v-model="contentMain"
               ></v-textarea>
               <h2>ヒント</h2><span>*必ずしも入力せずとも大丈夫です</span>
               <h3>創造性：</h3>
@@ -28,24 +26,29 @@
               <v-text-field
                 label="起点"
                 outline
+                v-model="contentInnovationPoint1"
               ></v-text-field>
               <v-text-field
                 label="定説"
                 outline
+                v-model="contentInnovationPoint2"
               ></v-text-field>
               <v-text-field
                 label="逆説"
                 outline
+                v-model="contentInnovationPoint3"
               ></v-text-field>
               <h3>社会性：</h3>
               <v-text-field
                 label="どんな新しい社会が実現できるか"
                 outline
+                v-model="contentSocialPoint"
               ></v-text-field>
               <h3>経済合理性：</h3>
               <v-text-field
                 label="どうやって収益化するか"
                 outline
+                v-model="contentBusinessPoint"
               ></v-text-field>
               </v-flex>
               <v-flex xs12>
@@ -56,6 +59,7 @@
                 @click.prevent="shareIdea">
                 アイデアをシェア
               </v-btn>
+              <pre>{{ $data }}</pre>
               </v-flex>
             </v-container>
           </v-form>
@@ -74,24 +78,42 @@ export default {
   data() {
     return {
       title: null,
-      content: null,
+      contentMain: null,
       feedback: null,
+      contentBusinessPoint: null,
+      contentSocialPoint: null,
+      contentInnovationPoint1: null,
+      contentInnovationPoint2: null,
+      contentInnovationPoint3: null
     }
   },
   methods: {
     shareIdea: function(event) {
-      console.log(this.title, this.content)
-      if (this.title && this.content) {
+      console.log(
+        this.title, this.contentMain,this.contentSocialPoint, this.contentBusinessPoint,
+        this.contentInnovationPoint1, this.contentInnovationPoint2, this.contentInnovationPoint3
+      )
+      if (this.title && this.contentMain) {
         db.collection('ideas').add({
           title: this.title,
-          content: this.content,
+          contentMain: this.contentMain,
+          contentSocialPoint: this.contentSocialPoint,
+          contentBusinessPoint: this.contentBusinessPoint,
+          contentInnovationPoint1: this.contentInnovationPoint1,
+          contentInnovationPoint2: this.contentInnovationPoint2,
+          contentInnovationPoint3: this.contentInnovationPoint3
         }).then(() => {
           this.$router.push({ name: 'Home'})
         }).catch(err => {
           console.log(err)
         })
         this.title = null
-        this.content = null
+        this.contentMain = null
+        this.contentSocialPoint = null,
+        this.contentBusinessPoint = null,
+        this.contentInnovationPoint1 = null,
+        this.contentInnovationPoint2 = null,
+        this.contentInnovationPoint3 = null
       } else {
         this.feedback = 'error'
       }
