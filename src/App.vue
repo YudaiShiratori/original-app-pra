@@ -27,4 +27,6 @@ export default {
 .main-content
   margin-top 90px
   margin-bottom 60px
+body
+  background-color #CCFF99
 </style>
