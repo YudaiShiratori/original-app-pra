@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>僕らのビジネスアイデア道場</h2>
+    <h2>みんなのアイデア</h2>
     <!-- <RecentIdea /> -->
     <AllIdea />
   </div>
@@ -19,3 +19,9 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus">
+.home h2 {
+  margin-bottom 50px
+}
+</style>

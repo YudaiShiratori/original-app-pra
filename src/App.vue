@@ -24,9 +24,10 @@ export default {
 </script>
 
 <style lang="stylus">
+.html
+  height 100vh
+  width 100vw
 .main-content
   margin-top 90px
   margin-bottom 60px
-body
-  background-color #CCFF99
 </style>
