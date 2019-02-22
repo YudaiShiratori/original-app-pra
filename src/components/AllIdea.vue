@@ -2,6 +2,7 @@
   <div class="all-idea">
     <v-flex class="container__body">
       <v-flex xs12 sm12>
+        <h3>新着アイデア</h3>
         <v-carousel 
           xs12 sm12
           hide-delimiters
@@ -16,13 +17,13 @@
         </v-carousel>
       </v-flex>
       <v-flex xs12 sm12 style="margin-top: 30px;">
+        <h3>おすすめアイデア</h3>
         <v-container v-for="idea in ideas" :key="idea.id" class="flex-container">
           <v-layout row column>
             <v-flex xs6 order-lg2>
               <v-card color="green" hover min-height="250px">
-                <router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">Idea</router-link>
-                <h1>{{ idea.title }}</h1>
-                <p>{{ idea.id }}</p>
+                <h1><strong>{{ idea.title }}</strong></h1>
+              　<router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">詳しく見る！</router-link>
               </v-card>
             </v-flex>
           </v-layout>
@@ -54,7 +55,7 @@ export default {
   },
   methods: {
     openIdea(idea) {
-      this.$router.push({ name: 'ViewIdea', params: { id : idea.id} })
+      this.$router.push({ name: 'ViewIdea', params: { id : idea.id } })
     }
   }
 }
@@ -63,11 +64,8 @@ export default {
 <style lang="stylus">
 .flex-container
   display flex
-  // margin-top 10px
+  height 60vh
 .catchyTitle
   font-size 80px
   color yellow
-.carousel
- height 30vh
- width 100vw
 </style>

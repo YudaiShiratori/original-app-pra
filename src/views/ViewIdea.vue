@@ -4,7 +4,6 @@
       <v-layout row>
         <v-flex xs12 sm6 offset-sm3>
           <v-card>
-              <!-- <pre>{{ $data }}</pre> -->
             <v-card-title>
               <v-layout column>
                 <h2>{{ idea.title }}</h2>
@@ -12,12 +11,15 @@
             </v-card-title>
             <v-card-content>
               <v-layout column>
-                <h2>{{ idea.content }}</h2>
+                <h2>{{ idea.contentMain }}</h2>
+                <h2>{{ idea.contentSocialPoint }}</h2>
+                <h2>{{ idea.contentBusinessPoint }}</h2>
               </v-layout>
             </v-card-content>
           </v-card>
         </v-flex>
       </v-layout>
+      <Comment />
     </v-flex>
   </div>
 </template>
@@ -25,13 +27,13 @@
 
 <script>
 import db from '@/firebase/firebaseConfig'
-// import Opinion from '@/components/Opinion'
+import Comment from '@/components/Comment'
 
 export default {
   name: 'ViewIdea',
-  // component: {
-  //   Opinion
-  // },
+  component: {
+    Comment
+  },
   data() {
     return {
       idea: null

@@ -28,6 +28,6 @@ export default {
   height 100vh
   width 100vw
 .main-content
-  margin-top 90px
+  margin-top 70px
   margin-bottom 60px
 </style>

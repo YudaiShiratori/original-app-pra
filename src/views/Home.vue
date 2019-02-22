@@ -22,6 +22,6 @@ export default {
 
 <style lang="stylus">
 .home h2 {
-  margin-bottom 50px
+  margin-bottom 10px
 }
 </style>

@@ -59,7 +59,6 @@
                 @click.prevent="shareIdea">
                 アイデアをシェア
               </v-btn>
-              <pre>{{ $data }}</pre>
               </v-flex>
             </v-container>
           </v-form>
