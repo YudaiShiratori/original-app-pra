@@ -31,7 +31,7 @@ import Comment from '@/components/Comment'
 
 export default {
   name: 'ViewIdea',
-  component: {
+  components: {
     Comment
   },
   data() {

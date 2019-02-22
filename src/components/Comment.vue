@@ -1,6 +1,6 @@
 <template>
   <div class="comment container">
-    <h2 class="center teal-text">Chat {{ this.name }}</h2>
+    <!-- <h2 class="center teal-text">Chat {{ this.name }}</h2> -->
     <div class="card">
       <div class="card-content">
         <ul class="messages">
@@ -42,7 +42,7 @@ export default {
   props: ['name'],
   data() {
     return {
-      NewMessage: null,
+      newMessage: null,
       feedback: null,
       messages: []
     }
