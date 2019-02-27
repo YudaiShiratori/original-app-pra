@@ -7,7 +7,7 @@
       app
       dark
       v-model="isDrawer"
-      class="blue lighten-3"
+      class="lighten-3"
       style="width: 220px;">
       <v-container
         fluid
@@ -33,7 +33,6 @@
     <!-- ツールバー https://vuetifyjs.com/en/components/toolbars#toolbar -->
     <v-toolbar
       dark
-      color="blue"
       fixed
       clipped-left
       app>
@@ -89,6 +88,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="stylus">
+.v-toolbar
+  background #222
 </style>

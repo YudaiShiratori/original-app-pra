@@ -1,30 +1,38 @@
 <template>
   <div class="view-idea">
     <v-flex class="container__body">
-      <v-layout row>
-        <v-flex xs12 sm6 offset-sm3>
-          <template>
-            <v-container class="ideaBody">
-              <div class="ideaTitle">{{ idea.title }}</div>
+      <v-flex xs12 sm12>
+        <template>
+          <v-container class="ideaBody">
+            <div class="ideaTitle">{{ idea.title }}</div>
+            <v-card>
               <div class="ideaText">
-                <div>
-                  <p>どんなアイデアか</p>
-                  <h4>{{ idea.contentMain }}</h4>
-                </div>
-                <div>
-                  <p>社会的なポイント</p>
-                  <h5>{{ idea.contentSocialPoint }}</h5>
-                </div>
-                <div>
-                  <p>収益化ポイント</p>
-                  <h5>{{ idea.contentBusinessPoint }}</h5>
-                </div>
+                <v-container>
+                  <h4>どんなアイデアか</h4>
+                  <p>{{ idea.contentMain }}</p>
+                </v-container>
+                <v-container>
+                  <v-layout row column>
+                    <v-flex xs12 sm6>
+                      <v-card color="green" hover>
+                        <h4>社会的なポイント</h4>
+                        <p>{{ idea.contentSocialPoint }}</p>
+                      </v-card>
+                    </v-flex>
+                    <v-flex xs12 sm6>
+                      <v-card color="green" hover>
+                        <h4>収益化ポイント</h4>
+                        <p>{{ idea.contentBusinessPoint }}</p>
+                      </v-card>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
               </div>
-            </v-container>
-          </template>
-        </v-flex>
-      </v-layout>
-      <Comment />
+            </v-card>
+          </v-container>
+        </template>
+      </v-flex>
+      <!-- <Comment /> -->
     </v-flex>
   </div>
 </template>
@@ -56,7 +64,7 @@ export default {
 <style lang="stylus">
 .ideaBody
   font-size 16px
-
+  width 100%
 .ideaTitle
   font-size 28px
   font-weight 700
@@ -64,7 +72,6 @@ export default {
   margin-top 0
   margin-bottom 24px
   letter-spacing 1px
-
 .ideaText
   margin 20px 0
   line-height 1.8em

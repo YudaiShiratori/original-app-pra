@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>みんなのアイデア</h2>
+    <h1>みんなのアイデア</h1>
     <!-- <RecentIdea /> -->
     <AllIdea />
   </div>

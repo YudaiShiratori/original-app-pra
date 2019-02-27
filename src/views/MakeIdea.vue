@@ -1,7 +1,9 @@
 <template>
   <div class="make-idea">
-    <h2>あなたのアイデアで世界を変えよう！</h2>
-    <NewIdea />
+    <h3>あなたのアイデアで世界を変えよう！</h3>
+    <v-container>
+      <NewIdea />
+    </v-container>
   </div>
 </template>
 

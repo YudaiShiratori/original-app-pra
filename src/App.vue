@@ -27,6 +27,8 @@ export default {
 .html
   height 100vh
   width 100vw
+body
+  background #EFEFEF
 .main-content
   margin-top 70px
   margin-bottom 60px

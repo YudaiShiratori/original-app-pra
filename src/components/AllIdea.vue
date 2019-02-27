@@ -1,32 +1,34 @@
 <template>
   <div class="all-idea">
     <v-flex class="container__body">
-      <v-flex xs12 sm12>
-        <h3>新着アイデア</h3>
-        <v-carousel 
-          xs12 sm12
-          hide-delimiters
-          dark>
-          <v-carousel-item v-for="(item, index) in ideas" :key="index" style="background-color: gray;">
-            <v-container class="flex-container">
-              <div class="catchyTitle">
-                <p @click="openIdea(item)">{{ item.title }}</p>
-              </div>
-            </v-container>
-          </v-carousel-item>
-        </v-carousel>
-      </v-flex>
-      <v-flex xs12 sm12 style="margin-top: 30px;">
-        <h3>おすすめアイデア</h3>
-        <v-container v-for="idea in ideas" :key="idea.id" class="flex-container">
-          <v-layout row column>
-            <v-flex xs6 order-lg2>
-              <v-card color="green" hover min-height="250px">
-                <h1><strong>{{ idea.title }}</strong></h1>
-              　<router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">詳しく見る！</router-link>
+      <v-flex xs12 sm10 offset-sm1 style="margin-top: 30px;">
+        <v-container>
+          <h2>アイデア一覧</h2>
+          <v-container v-for="idea in ideas" :key="idea.id" class="flex-container">
+            <v-layout row column>
+              <v-flex xs6 order-lg2>
+                <v-card class="idea-area">
+                  <h1><strong>{{ idea.title }}</strong></h1>
+                　<router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">詳しく見る！</router-link>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-container>
+        <v-container>
+          <h2>新着・おすすめアイデア</h2>
+          <v-container>
+            <v-carousel 
+              xs12 sm12
+              hide-delimiters
+              height="30vh">
+              <v-card>
+                <v-carousel-item v-for="(item, index) in ideas" :key="index" style="background-color: gray;">
+                  <p @click="openIdea(item)" class="catchyTitle">{{ item.title }}</p>
+                </v-carousel-item>
               </v-card>
-            </v-flex>
-          </v-layout>
+            </v-carousel>
+          </v-container>
         </v-container>
       </v-flex>
     </v-flex>
@@ -64,8 +66,23 @@ export default {
 <style lang="stylus">
 .flex-container
   display flex
-  height 60vh
 .catchyTitle
-  font-size 80px
+  font-size 8vh
   color yellow
+  // top 50%
+  // -ms-transform translateY(-50%)
+  // -webkit-transform translateY(-50%)
+  // transform translateY(-50%)
+  position absolute
+  text-align center
+  padding 20px
+  margin auto
+  top 0
+  bottom 0
+  left 0
+  right 0
+.idea-area
+  padding 24px
+  background-color #FFF
+  border-top 1px solid #EAEAEA
 </style>

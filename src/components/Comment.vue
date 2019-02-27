@@ -92,6 +92,9 @@ export default {
 }
 .comment span {
   font-size: 1.4em;
+  padding-left: 56px;
+  display: block;
+  line-height: 176%;
 }
 .comment .time {
   display: block;
