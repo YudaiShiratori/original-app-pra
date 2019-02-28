@@ -24,9 +24,12 @@ export default {
 </script>
 
 <style lang="stylus">
-.main-content
-  margin-top 90px
-  margin-bottom 60px
+.html
+  height 100vh
+  width 100vw
 body
-  background-color #CCFF99
+  background #EFEFEF
+.main-content
+  margin-top 70px
+  margin-bottom 60px
 </style>
