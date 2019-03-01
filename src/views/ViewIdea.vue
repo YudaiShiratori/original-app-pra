@@ -9,20 +9,28 @@
               <div class="ideaText">
                 <v-container>
                   <h4>どんなアイデアか</h4>
-                  <p>{{ idea.contentMain }}</p>
+                  <p><h3>{{ idea.contentMain }}</h3></p>
                 </v-container>
                 <v-container>
                   <v-layout row column>
                     <v-flex xs12 sm6>
-                      <v-card color="green" hover>
-                        <h4>社会的なポイント</h4>
-                        <p>{{ idea.contentSocialPoint }}</p>
+                      <v-card hover class="container ideaCard">
+                        <h4>(逆説の構造)</h4>
+                        <p>ポイント：{{ idea.contentInnovationPoint1 }}</p>
+                        <p>今までの常識：{{ idea.contentInnovationPoint2 }}</p>
+                        <h3>逆転の発想：{{ idea.contentInnovationPoint3 }}</h3>
                       </v-card>
                     </v-flex>
                     <v-flex xs12 sm6>
-                      <v-card color="green" hover>
-                        <h4>収益化ポイント</h4>
-                        <p>{{ idea.contentBusinessPoint }}</p>
+                      <v-card hover class="container ideaCard">
+                        <h4>(どんな新しい社会が実現できるか)</h4>
+                        <h3>{{ idea.contentSocialPoint }}</h3>
+                      </v-card>
+                    </v-flex>
+                    <v-flex xs12 sm6>
+                      <v-card hover class="container ideaCard">
+                        <h4>(どうやって収益化するか)</h4>
+                        <h3>{{ idea.contentBusinessPoint }}</h3>
                       </v-card>
                     </v-flex>
                   </v-layout>
@@ -75,4 +83,12 @@ export default {
 .ideaText
   margin 20px 0
   line-height 1.8em
+.ideaCard {
+    padding 0.5em 1em
+    margin 2em 0
+    font-weight bold
+    background #222
+    border solid 3px #6091d3/*線*/
+    border-radius 10px/*角の丸み*/
+}
 </style>
