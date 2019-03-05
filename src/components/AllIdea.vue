@@ -1,20 +1,20 @@
 <template>
   <div class="all-idea">
     <v-flex class="container__body">
-      <v-flex xs12 sm10 offset-sm1 style="margin-top: 30px;">
-        <v-container>
+      <!-- <v-flex xs12 sm10 style="margin-top: 30px;"> -->
           <h2>アイデア一覧</h2>
-          <v-container v-for="idea in ideas" :key="idea.id" class="flex-container">
-            <v-layout row column>
-              <v-flex xs6 order-lg2>
+          <v-container v-for="idea in ideas" :key="idea.id">
+            <!-- <v-layout row column>
+              <v-flex xs order-lg2> -->
                 <v-card class="idea-area">
-                  <h1><strong>{{ idea.title }}</strong></h1>
-                　<router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">詳しく見る！</router-link>
+                  <v-container>
+                    <p class="ideaCatchTitle">{{ idea.title }}</p>
+                　  <router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">詳しく見る！</router-link>
+                  </v-container>
                 </v-card>
-              </v-flex>
-            </v-layout>
+              <!-- </v-flex>
+            </v-layout> -->
           </v-container>
-        </v-container>
         <v-container>
           <h2>新着・おすすめアイデア</h2>
           <v-container>
@@ -31,7 +31,7 @@
           </v-container>
         </v-container>
       </v-flex>
-    </v-flex>
+    <!-- </v-flex> -->
   </div>
 </template>
 
@@ -64,8 +64,6 @@ export default {
 </script>
 
 <style lang="stylus">
-.flex-container
-  display flex
 .catchyTitle
   font-size 8vh
   color yellow
@@ -82,7 +80,12 @@ export default {
   left 0
   right 0
 .idea-area
-  padding 24px
   background-color #FFF
-  border-top 1px solid #EAEAEA
+  border 1px solid #EAEAEA
+  width 100%
+  height 250px
+  text-align center
+.ideaCatchTitle
+  color green
+  font-size 3em
 </style>
