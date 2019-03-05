@@ -52,6 +52,11 @@
                   v-model="contentBusinessPoint"
                 ></v-text-field>
                 </v-flex>
+                <div id="app">
+                  <h2>↓画像↓</h2>
+                  <img v-show="uploadedImage" :src="uploadedImage" />
+                  <input type="file" v-on:change="onFileChange">
+                </div>
                 <v-flex xs12>
                 <p v-if="feedback">{{ feedback }}</p>
                 <v-btn
@@ -85,7 +90,8 @@ export default {
       contentSocialPoint: null,
       contentInnovationPoint1: null,
       contentInnovationPoint2: null,
-      contentInnovationPoint3: null
+      contentInnovationPoint3: null,
+      uploadedImage: ''
     }
   },
   methods: {
@@ -121,6 +127,17 @@ export default {
       this.contentInnovationPoint1 = null,
       this.contentInnovationPoint2 = null,
       this.contentInnovationPoint3 = null
+    },
+    onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        this.uploadedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
     },
   },
 }
