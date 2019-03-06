@@ -37,6 +37,7 @@
 
 <script>
 import db from '@/firebase/firebaseConfig'
+import firebase from 'firebase';
 
 export default {
   name: 'AllIdea',
@@ -58,6 +59,12 @@ export default {
   methods: {
     openIdea(idea) {
       this.$router.push({ name: 'ViewIdea', params: { id : idea.id } })
+    },
+    getImage() {
+      ref = firebase.storage().ref().child('img/sample.jpg');
+      ref.getDownloadURL().then((url) => {
+        document.getElementById('image').src = url;
+      });
     }
   }
 }

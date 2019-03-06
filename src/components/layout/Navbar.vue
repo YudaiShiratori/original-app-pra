@@ -67,7 +67,7 @@ export default {
         },
         {
           label: 'アイデア投稿',
-          to: 'MakeIdea',
+          to: 'NewIdea',
         },
       ],
     } 
@@ -81,9 +81,6 @@ export default {
     onClickNavigationItem(menu) {
       this.$router.push({name: menu.to})
     },
-    // created () {
-    //   let user = firebase.auth().currentUser
-    // }
   }
 }
 </script>

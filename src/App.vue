@@ -10,17 +10,19 @@
   </div>
 </template>
 
-<script>
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Navbar from '@/components/layout/Navbar.vue'
+import Footer from '@/components/layout/Footer.vue'
 
-export default {
+@Component({
   name: 'App',
   components: {
     Navbar,
     Footer,
   },
-};
+})
+export default class App extends Vue {}
 </script>
 
 <style lang="stylus">
