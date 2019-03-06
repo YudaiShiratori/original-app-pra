@@ -3,7 +3,6 @@
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
         <h3>あなたのアイデアで世界を変えよう！</h3>
-        <pre>{{ $data }}</pre>
           <v-form ref="form">
             <v-container xs12 sm12 style="padding: 0;">
               <h2>あなたのアイデア</h2>
@@ -77,10 +76,6 @@
 </template>
 
 
-// import slugify from 'slugify'
-// import db from 'firebase/app'
-
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
@@ -98,8 +93,8 @@ export default class NewIdea extends Vue {
   contentInnovationPoint1: string = ''
   contentInnovationPoint2: string = ''
   contentInnovationPoint3: string = ''
-  uploadedImage: any
-  ImagenamePath: string
+  uploadedImage: any = { url: '' }
+  ImagenamePath: string = ''
   frStorage: firebase.storage.Storage = firebase.storage()
   isLoading: boolean = false
   newIdeas: any[] = []
@@ -169,7 +164,11 @@ export default class NewIdea extends Vue {
     this.contentInnovationPoint1 = ''
     this.contentInnovationPoint2 = ''
     this.contentInnovationPoint3 = ''
-    this.uploadedImage = ''
+    this.uploadedImage = { url: '' }
+  }
+
+  onFileChange() {
+    console.log('onFileChange')
   }
 
   // async upload () {
@@ -184,75 +183,5 @@ export default class NewIdea extends Vue {
   //       throw error
   //   }
   // }
-
 }
 </script>
-
-// <script>
-// import slugify from 'slugify';
-// import db from '@/firebase/firebaseConfig';
-// import firebase from 'firebase';
-
-// export default {
-//   name: 'NewIdea',
-//   data() {
-//     return {
-//       title: null,
-//       contentMain: null,
-//       feedback: null,
-//       contentBusinessPoint: null,
-//       contentSocialPoint: null,
-//       contentInnovationPoint1: null,
-//       contentInnovationPoint2: null,
-//       contentInnovationPoint3: null,
-//       uploadedImage: null
-//     }
-//   },
-//   methods: {
-//     shareIdea: function(event) {
-//       if (this.title && this.contentMain) {
-//         if(this.uploadedImage)
-//           upload()
-//         db.collection('ideas').add({
-//           title: this.title,
-//           contentMain: this.contentMain,
-//           contentSocialPoint: this.contentSocialPoint,
-//           contentBusinessPoint: this.contentBusinessPoint,
-//           contentInnovationPoint1: this.contentInnovationPoint1,
-//           contentInnovationPoint2: this.contentInnovationPoint2,
-//           contentInnovationPoint3: this.contentInnovationPoint3
-//         }).then(() => {
-//           this.$router.push({ name: 'Home'})
-//         }).catch(err => {
-//           console.log(err)
-//         })
-//         clear()
-//       } else {
-//         this.feedback = 'error'
-//       }
-//     },
-//     clear() {
-//       this.title = null
-//       this.contentMain = null
-//       this.contentSocialPoint = null,
-//       this.contentBusinessPoint = null,
-//       this.contentInnovationPoint1 = null,
-//       this.contentInnovationPoint2 = null,
-//       this.contentInnovationPoint3 = null,
-//       this.uploadedImage = null
-//     },
-//     async upload () {
-//         try {
-//             let path = this.filenamePath
-//             let mountainsRef = this.frStorage.ref().child(path)
-//             await mountainsRef.put(this.file)
-//             let url = await mountainsRef.getDownloadURL()
-//             console.log('storage upload', url)
-//             return url
-//         } catch (error) {
-//             throw error
-//         }
-//     }
-//   }
-// }
-// </script>
