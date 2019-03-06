@@ -13,7 +13,7 @@
                 </v-container>
                 <v-container>
                   <v-layout row column>
-                    <v-flex xs12 sm6>
+                    <v-flex xs12 sm6 v-if="idea.contentInnovationPoint3">
                       <v-card hover class="container ideaCard">
                         <h4>(逆説の構造)</h4>
                         <p>ポイント：{{ idea.contentInnovationPoint1 }}</p>
@@ -21,13 +21,13 @@
                         <h3>逆転の発想：{{ idea.contentInnovationPoint3 }}</h3>
                       </v-card>
                     </v-flex>
-                    <v-flex xs12 sm6>
+                    <v-flex xs12 sm6 v-if="idea.contentSocialPoint">
                       <v-card hover class="container ideaCard">
                         <h4>(どんな新しい社会が実現できるか)</h4>
                         <h3>{{ idea.contentSocialPoint }}</h3>
                       </v-card>
                     </v-flex>
-                    <v-flex xs12 sm6>
+                    <v-flex xs12 sm6 v-if="idea.contentBusinessPoint">
                       <v-card hover class="container ideaCard">
                         <h4>(どうやって収益化するか)</h4>
                         <h3>{{ idea.contentBusinessPoint }}</h3>

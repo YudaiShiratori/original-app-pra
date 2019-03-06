@@ -2,6 +2,7 @@
   <div class="new-idea">
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
+        <h3>あなたのアイデアで世界を変えよう！</h3>
           <v-form ref="form">
             <v-container xs12 sm12 style="padding: 0;">
               <h2>あなたのアイデア</h2>
@@ -52,12 +53,17 @@
                   v-model="contentBusinessPoint"
                 ></v-text-field>
                 </v-flex>
+                <div id="app">
+                  <h2>↓画像↓</h2>
+                  <img v-show="uploadedImage" :src="uploadedImage" />
+                  <input type="file" v-on:change="onFileChange">
+                </div>
                 <v-flex xs12>
                 <p v-if="feedback">{{ feedback }}</p>
                 <v-btn
                   color="red"
                   class="white--text"
-                  @click.prevent="shareIdea">
+                  @click.prevent="onRegist">
                   アイデアをシェア
                 </v-btn>
                 </v-flex>
@@ -69,59 +75,113 @@
   </div>
 </template>
 
-<script>
-import slugify from 'slugify';
-import db from '@/firebase/firebaseConfig';
-import firebase from 'firebase';
 
-export default {
-  name: 'NewIdea',
-  data() {
-    return {
-      title: null,
-      contentMain: null,
-      feedback: null,
-      contentBusinessPoint: null,
-      contentSocialPoint: null,
-      contentInnovationPoint1: null,
-      contentInnovationPoint2: null,
-      contentInnovationPoint3: null
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import firebase from 'firebase/app'
+
+@Component({
+  name: 'NewIdea'
+})
+export default class NewIdea extends Vue {
+
+  title: string = ''
+  contentMain: string = ''
+  feedback: string = ''
+  contentBusinessPoint: string = ''
+  contentSocialPoint: string = ''
+  contentInnovationPoint1: string = ''
+  contentInnovationPoint2: string = ''
+  contentInnovationPoint3: string = ''
+  uploadedImage: any = { url: '' }
+  ImagenamePath: string = ''
+  frStorage: firebase.storage.Storage = firebase.storage()
+  isLoading: boolean = false
+  newIdeas: any[] = []
+ 
+   /**
+   * 登録
+   */
+  async onRegist() {
+    this.isLoading = true
+    await this.writeFirestore()
+    await this.getItems()
+    this.clear()
+    this.isLoading = false
+  }
+  /**
+   * 取得
+   */
+  async getItems() {
+    console.log('getItems')
+    this.isLoading = true
+    await this.readFirestore()
+    this.isLoading = false
+  }
+  /**
+   * Firestoreへデータを書き込む
+   */
+  async writeFirestore() {
+    try {
+      const db: firebase.firestore.Firestore = firebase.firestore()
+      const collection: firebase.firestore.CollectionReference = db.collection('ideas')
+      const id: string = collection.doc().id
+      const result = await collection.doc(id).set({
+        title: this.title,
+        contentMain: this.contentMain,
+        contentSocialPoint: this.contentSocialPoint,
+        contentBusinessPoint: this.contentBusinessPoint,
+        contentInnovationPoint1: this.contentInnovationPoint1,
+        contentInnovationPoint2: this.contentInnovationPoint2,
+        contentInnovationPoint3: this.contentInnovationPoint3
+      })
+    } catch (error) {
+      console.log('firebase error', error)
     }
-  },
-  methods: {
-    shareIdea: function(event) {
-      console.log(
-        this.title, this.contentMain,this.contentSocialPoint, this.contentBusinessPoint,
-        this.contentInnovationPoint1, this.contentInnovationPoint2, this.contentInnovationPoint3
-      )
-      if (this.title && this.contentMain) {
-        db.collection('ideas').add({
-          title: this.title,
-          contentMain: this.contentMain,
-          contentSocialPoint: this.contentSocialPoint,
-          contentBusinessPoint: this.contentBusinessPoint,
-          contentInnovationPoint1: this.contentInnovationPoint1,
-          contentInnovationPoint2: this.contentInnovationPoint2,
-          contentInnovationPoint3: this.contentInnovationPoint3
-        }).then(() => {
-          this.$router.push({ name: 'Home'})
-        }).catch(err => {
-          console.log(err)
-        })
-        clear()
-      } else {
-        this.feedback = 'error'
-      }
-    },
-    clear() {
-      this.title = null
-      this.contentMain = null
-      this.contentSocialPoint = null,
-      this.contentBusinessPoint = null,
-      this.contentInnovationPoint1 = null,
-      this.contentInnovationPoint2 = null,
-      this.contentInnovationPoint3 = null
-    },
-  },
+  }
+  /**
+   * Firestoreからデータを取得
+   */
+  async readFirestore() {
+    try {
+      this.newIdeas = []
+      const db: firebase.firestore.Firestore = firebase.firestore()
+      const ideas: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
+      ideas.docs.forEach((idea: firebase.firestore.QueryDocumentSnapshot) => {
+        this.newIdeas.push(idea.data())
+      })
+      console.log(this.newIdeas)
+    } catch (error) {
+      console.log('firebase error', error)
+    }
+  }
+
+  clear() {
+    this.title = ''
+    this.contentMain = ''
+    this.contentSocialPoint = ''
+    this.contentBusinessPoint = ''
+    this.contentInnovationPoint1 = ''
+    this.contentInnovationPoint2 = ''
+    this.contentInnovationPoint3 = ''
+    this.uploadedImage = { url: '' }
+  }
+
+  onFileChange() {
+    console.log('onFileChange')
+  }
+
+  // async upload () {
+  //   try {
+  //       let path = this.ImagenamePath
+  //       let mountainsRef = this.frStorage.ref().child(path)
+  //       await mountainsRef.put(this.uploadedImage)
+  //       let url = await mountainsRef.getDownloadURL()
+  //       console.log('storage upload', url)
+  //       return url
+  //   } catch (error) {
+  //       throw error
+  //   }
+  // }
 }
 </script>

@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-// import Idea from './views/Idea.vue';
 import ViewIdea from './views/ViewIdea.vue';
-import MakeIdea from './views/MakeIdea.vue';
+import NewIdea from '@/components/NewIdea.vue';
 import Signup from './views/auth/Signup.vue';
 import Login from './views/auth/Login.vue';
 import Pra from '@/components/Pra.vue';
@@ -26,9 +25,9 @@ export default new Router({
       component: ViewIdea,
     },
     {
-      path: '/make-idea',
-      name: 'MakeIdea',
-      component: MakeIdea,
+      path: '/new-idea',
+      name: 'NewIdea',
+      component: NewIdea,
     },
     {
       path: '/signup',
