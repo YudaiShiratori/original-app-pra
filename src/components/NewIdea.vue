@@ -105,19 +105,11 @@ export default class NewIdea extends Vue {
   async onRegist() {
     this.isLoading = true
     await this.writeFirestore()
-    await this.getItems()
     this.clear()
     this.isLoading = false
+    this.$router.push({ name: 'Home'})
   }
-  /**
-   * 取得
-   */
-  async getItems() {
-    console.log('getItems')
-    this.isLoading = true
-    await this.readFirestore()
-    this.isLoading = false
-  }
+  
   /**
    * Firestoreへデータを書き込む
    */
@@ -139,22 +131,6 @@ export default class NewIdea extends Vue {
       console.log('firebase error', error)
     }
   }
-  /**
-   * Firestoreからデータを取得
-   */
-  async readFirestore() {
-    try {
-      this.newIdeas = []
-      const db: firebase.firestore.Firestore = firebase.firestore()
-      const ideas: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
-      ideas.docs.forEach((idea: firebase.firestore.QueryDocumentSnapshot) => {
-        this.newIdeas.push(idea.data())
-      })
-      console.log(this.newIdeas)
-    } catch (error) {
-      console.log('firebase error', error)
-    }
-  }
 
   clear() {
     this.title = ''
@@ -166,7 +142,7 @@ export default class NewIdea extends Vue {
     this.contentInnovationPoint3 = ''
     this.uploadedImage = { url: '' }
   }
-
+  
   onFileChange() {
     console.log('onFileChange')
   }
