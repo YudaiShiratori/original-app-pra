@@ -31,6 +31,7 @@ export default class App extends Vue {}
   width 100vw
 body
   background #EFEFEF
+  font-family serif
 .main-content
   margin-top 70px
   margin-bottom 60px

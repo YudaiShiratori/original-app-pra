@@ -4,17 +4,19 @@
       <v-flex xs12 sm12>
         <template>
           <v-container class="ideaBody">
-            <div class="ideaTitle">{{ idea.title }}</div>
+            <div class="image-area">
+              <div class="ideaTitle">{{ idea.title }}</div>
+            </div>
             <v-card>
               <div class="ideaText">
                 <v-container>
                   <h4>どんなアイデアか</h4>
-                  <p><h3>{{ idea.contentMain }}</h3></p>
+                  <h1>{{ idea.contentMain }}</h1>
                 </v-container>
                 <v-container>
                   <v-layout row column>
                     <v-flex xs12 sm6 v-if="idea.contentInnovationPoint3">
-                      <v-card hover class="container ideaCard">
+                      <v-card hover class="ideaCard">
                         <h4>(逆説の構造)</h4>
                         <p>ポイント：{{ idea.contentInnovationPoint1 }}</p>
                         <p>今までの常識：{{ idea.contentInnovationPoint2 }}</p>
@@ -22,13 +24,13 @@
                       </v-card>
                     </v-flex>
                     <v-flex xs12 sm6 v-if="idea.contentSocialPoint">
-                      <v-card hover class="container ideaCard">
+                      <v-card hover class="ideaCard">
                         <h4>(どんな新しい社会が実現できるか)</h4>
                         <h3>{{ idea.contentSocialPoint }}</h3>
                       </v-card>
                     </v-flex>
                     <v-flex xs12 sm6 v-if="idea.contentBusinessPoint">
-                      <v-card hover class="container ideaCard">
+                      <v-card hover class="ideaCard">
                         <h4>(どうやって収益化するか)</h4>
                         <h3>{{ idea.contentBusinessPoint }}</h3>
                       </v-card>
@@ -73,8 +75,10 @@ export default {
 .ideaBody
   font-size 16px
   width 100%
+  background-image url('../assets/code-coding-computer-574071-min.png')
+  background-size cover
 .ideaTitle
-  font-size 28px
+  font-size 3em
   font-weight 700
   line-height 1.5em
   margin-top 0
@@ -82,13 +86,15 @@ export default {
   letter-spacing 1px
 .ideaText
   margin 20px 0
-  line-height 1.8em
-.ideaCard {
-    padding 0.5em 1em
-    margin 2em 0
-    font-weight bold
-    background #222
-    border solid 3px #6091d3/*線*/
-    border-radius 10px/*角の丸み*/
-}
+  line-height 3em
+  border solid 3px #2F4F4F/*線*/
+  border-radius 10px/*角の丸み*/
+  background rgba(220, 220, 220, 0.4)
+.ideaCard
+  padding 0.5em 1em
+  margin 2em 0
+  font-weight bold
+  border solid 3px #2F4F4F/*線*/
+  border-radius 10px/*角の丸み*/
+  background-color rgba(220, 220, 220, 0.4)
 </style>
