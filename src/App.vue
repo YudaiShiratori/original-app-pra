@@ -6,7 +6,7 @@
         <router-view/>
       </v-fade-transition>
     </v-container>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default class App extends Vue {}
   height 100vh
   width 100vw
 body
-  background #EFEFEF
+  background-color #EFEFEF
   font-family serif
 .main-content
   margin-top 70px
