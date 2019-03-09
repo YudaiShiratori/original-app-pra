@@ -11,20 +11,20 @@
           </li>
         </ul>
       </div>
+      <br>
       <div class="card-action">
         <v-flex xs12 sm6 offset-sm3>
           <v-form @submit.prevent="addMessage">
-            <v-container>
-              <v-flex xs12 sm6 md3>
+            <!-- <v-container> -->
+              <!-- <v-flex xs12 sm6 md3> -->
                 <v-text-field
-                  label="newMessage"
-                  placeholder="enter to add:"
-                  style="min-width: 250px;"
+                  placeholder="コメント:"
+                  width="100%"
                   outline
                   v-model="newMessage"
                 ></v-text-field>
-              </v-flex>
-            </v-container>
+              <!-- </v-flex> -->
+            <!-- </v-container> -->
           </v-form>
         </v-flex>
       </div>

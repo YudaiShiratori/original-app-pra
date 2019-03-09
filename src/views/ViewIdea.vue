@@ -7,10 +7,10 @@
             <div class="ideaTitle">
               {{ idea.title }}
             </div>
-            <v-container>
-              <div class="ideaText">
+            <v-container style="padding: 0;">
+              <div class="ideaContent">
                 <v-container>
-                  <h4>どんなアイデアか</h4>
+                  <h2>─どんなアイデアか─</h2>
                   <h1>{{ idea.contentMain }}</h1>
                 </v-container>
                 <v-container>
@@ -73,29 +73,33 @@ export default {
 
 <style lang="stylus">
 .ideaBody
-  font-size 1.1em
+  font-size 1em
   width 100%
   background-image url('../assets/code-coding-computer-574071-min.png')
   background-size cover
 .ideaTitle
-  font-size 2em
+  font-size 3em
   font-weight 700
   line-height 1.5em
   margin-top 0
   margin-bottom 24px
   letter-spacing 1px
-  background-color rgba(220, 220, 220, 0.6)
-.ideaText
+  background-color rgba(220, 220, 220, 0.9)
+  display inline-block
+  border solid 3px #2F4F4F/*線*/
+  border-radius 10px/*角の丸み*/
+.ideaContent
   margin 20px 0
   line-height 3em
   border solid 3px #2F4F4F/*線*/
   border-radius 10px/*角の丸み*/
-  background-color rgba(220, 220, 220, 0.6)
+  background-color rgba(220, 220, 220, 0.9)
 .ideaCard
   padding 0.5em 1em
   margin 2em 0
-  font-weight bold
+  font-size 1.3em
   border solid 3px #2F4F4F/*線*/
   border-radius 10px/*角の丸み*/
   background-color rgba(220, 220, 220, 0.6)
+  display inline-block
 </style>

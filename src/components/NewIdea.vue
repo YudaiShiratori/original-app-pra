@@ -1,13 +1,14 @@
 <template>
   <div class="new-idea">
     <v-flex class="container__body">
-      <v-flex xs12 sm6 offset-sm3>
-        <h3>あなたのアイデアで世界を変えよう！</h3>
+      <h3>あなたのアイデアで世界を変えよう！</h3>
+      <br>
+      <v-flex xs12 sm12 class="idea-form">
           <v-form ref="form">
-            <v-container xs12 sm12 style="padding: 0;">
+            <v-container xs12 sm12>
               <h2>あなたのアイデア</h2>
               <v-container>
-                <v-flex xs12>
+                <v-flex xs12 sm12>
                 <v-text-field
                   label="コンセプト"
                   placeholder="あなたのビジネスを一言で説明してください："
@@ -15,7 +16,7 @@
                   v-model="title"
                 ></v-text-field>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 sm12>
                 <v-textarea
                   outline
                   label="具体的な内容："
@@ -161,3 +162,7 @@ export default class NewIdea extends Vue {
   // }
 }
 </script>
+<style lang="stylus">
+.idea-form
+  background white
+</style>

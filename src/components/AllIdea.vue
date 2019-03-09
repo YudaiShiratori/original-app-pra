@@ -7,7 +7,7 @@
       <v-flex class="container__body">
         <!-- <v-flex xs12 sm10 style="margin-top: 30px;"> -->
             <h2>アイデア一覧</h2>
-            <v-container v-for="idea in ideas" :key="idea.id" >
+            <v-container v-for="idea in ideas" :key="idea.id">
               <!-- <v-layout row column>v-cloak
                 <v-flex xs order-lg2> -->
                   <v-card class="idea-area">
@@ -75,6 +75,8 @@ export default {
 </script>
 -->
 <style lang="stylus">
+.container
+  max-width 800px
 .catchyTitle
   font-size 8vh
   color yellow
