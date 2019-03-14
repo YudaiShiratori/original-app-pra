@@ -1,5 +1,7 @@
 <template>
-  <div class="comment container">
+  <div class="comment">
+    <br>
+    <br>
     <div class="card">
       <p>このアイデアを実現するには? アドバイス一覧</p>
       <div class="card-content">
@@ -14,15 +16,21 @@
       <br>
       <div class="card-action">
         <!-- <v-flex xs12 sm12> -->
-          <v-form @submit.prevent="addMessage">
+          <v-form>
             <!-- <v-container> -->
               <!-- <v-flex xs12 sm6 md3> -->
                 <v-textarea
-                  placeholder="実現を手助けするアドバイスは何かありますか？:"
+                  placeholder="実現を手助けするために何かアドバイスはありますか？:"
                   width="100%"
                   outline
                   v-model="newMessage"
-                ></v-textarea>
+                />
+                <v-btn
+                  color="red"
+                  class="white--text"
+                  @click.prevent="addMessage">
+                  アドバイスを投稿
+                </v-btn>       
               <!-- </v-flex> -->
             <!-- </v-container> -->
           </v-form>
@@ -33,7 +41,6 @@
 </template>
 
 <script>
-// import NewMessage from '@/components/NewMessage'
 import db from '@/firebase/firebaseConfig'
 // import moment from 'moment'
 
@@ -48,11 +55,10 @@ export default {
     }
   },
   created () {
-    let ref = db.collection('messages')
+    let ref = db.collection('ideas').doc(this.$route.params.id).collection('messages')
     // .orderBy('timestamp')
 
-    ref.onSnapshot( snapshot => {
-      console.log(snapshot.docChanges())
+    ref.onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
         if(change.type == 'added') {
           let doc = change.doc
@@ -68,10 +74,9 @@ export default {
   },
   methods: {
     addMessage() {
-      console.log(this.newMessage, this.name, Date.now())
       if(this.newMessage){
-        db.collection('messages').add({
-          content: this.newMessage,
+        db.collection('ideas').doc(this.$route.params.id).collection('messages').add({
+          message: this.newMessage,
           // name: this.name,
           // timestamp: Date.now()
         }).catch(err => {
@@ -104,6 +109,7 @@ export default {
   max-height 300px
   overflow auto
   list-style none
+  padding-left 0
 
 .messages-webkit-scrollbar 
   width 3px
@@ -116,9 +122,6 @@ export default {
 
 .textbox
   border solid 1px black/*線*/
-  border-bottom none
   font-size 1.4em
   text-align left
-  background-color white
-  opacity 0.7
 </style>

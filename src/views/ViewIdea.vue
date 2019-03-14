@@ -93,12 +93,11 @@ export default {
   background-color rgba(220, 220, 220, 0.9)
   display inline-block
   border solid 3px #2F4F4F/*線*/
-  border-radius 10px/*角の丸み*/
 .ideaContent
   margin 20px 0
   line-height 3em
   border solid 3px #2F4F4F/*線*/
-  border-radius 10px/*角の丸み*/
+  // border-radius 10px/*角の丸み*/
   background-color rgba(220, 220, 220, 0.9)
 .ideaCard
   padding 0.5em 1em
