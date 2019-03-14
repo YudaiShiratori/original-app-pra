@@ -9,12 +9,12 @@
               <h2>あなたのアイデア</h2>
               <v-container>
                 <v-flex xs12 sm12>
-                <v-text-field
+                <v-textarea
                   label="コンセプト"
                   placeholder="あなたのビジネスを一言で説明してください："
                   outline
                   v-model="title"
-                ></v-text-field>
+                ></v-textarea>
                 </v-flex>
                 <v-flex xs12 sm12>
                 <v-textarea
@@ -26,33 +26,33 @@
                 <h2>ヒント</h2><span>*必ずしも入力せずとも大丈夫です</span>
                 <h3>創造性：</h3>
                 <h4>逆説の構造</h4>
-                <v-text-field
+                <v-textarea
                   label="起点"
                   outline
                   v-model="contentInnovationPoint1"
-                ></v-text-field>
-                <v-text-field
+                ></v-textarea>
+                <v-textarea
                   label="定説"
                   outline
                   v-model="contentInnovationPoint2"
-                ></v-text-field>
-                <v-text-field
+                ></v-textarea>
+                <v-textarea
                   label="逆説"
                   outline
                   v-model="contentInnovationPoint3"
-                ></v-text-field>
+                ></v-textarea>
                 <h3>社会性：</h3>
-                <v-text-field
+                <v-textarea
                   label="どんな新しい社会が実現できるか"
                   outline
                   v-model="contentSocialPoint"
-                ></v-text-field>
+                ></v-textarea>
                 <h3>経済合理性：</h3>
-                <v-text-field
+                <v-textarea
                   label="どうやって収益化するか"
                   outline
                   v-model="contentBusinessPoint"
-                ></v-text-field>
+                ></v-textarea>
                 </v-flex>
                 <div id="app">
                   <h2>↓画像↓</h2>

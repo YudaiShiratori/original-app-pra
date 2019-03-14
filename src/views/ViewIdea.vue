@@ -4,45 +4,47 @@
       <v-flex xs12 sm12>
         <template>
           <v-container class="ideaBody">
-            <div class="ideaTitle">
-              {{ idea.title }}
-            </div>
-            <v-container style="padding: 0;">
-              <div class="ideaContent">
-                <v-container>
-                  <h2>─どんなアイデアか─</h2>
-                  <h1>{{ idea.contentMain }}</h1>
-                </v-container>
-                <v-container>
-                  <v-layout row column>
-                    <v-flex xs12 sm6 v-if="idea.contentInnovationPoint3">
-                      <v-container hover class="ideaCard">
-                        <h4>(逆説の構造)</h4>
-                        <p>ポイント：{{ idea.contentInnovationPoint1 }}</p>
-                        <p>今までの常識：{{ idea.contentInnovationPoint2 }}</p>
-                        <h3>逆転の発想：{{ idea.contentInnovationPoint3 }}</h3>
-                      </v-container>
-                    </v-flex>
-                    <v-flex xs12 sm6 v-if="idea.contentSocialPoint">
-                      <v-container hover class="ideaCard">
-                        <h4>(どんな新しい社会が実現できるか)</h4>
-                        <h3>{{ idea.contentSocialPoint }}</h3>
-                      </v-container>
-                    </v-flex>
-                    <v-flex xs12 sm6 v-if="idea.contentBusinessPoint">
-                      <v-container hover class="ideaCard">
-                        <h4>(どうやって収益化するか)</h4>
-                        <h3>{{ idea.contentBusinessPoint }}</h3>
-                      </v-container>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
+            <!-- <div class="idea-mask"> -->
+              <div class="ideaTitle">
+                {{ idea.title }}
               </div>
-            </v-container>
+              <v-container style="padding: 0;">
+                <div class="ideaContent">
+                  <v-container>
+                    <h2>─どんなアイデアか─</h2>
+                    <h1>{{ idea.contentMain }}</h1>
+                  </v-container>
+                  <v-container>
+                    <v-layout row column>
+                      <v-flex xs12 sm6 v-if="idea.contentInnovationPoint3">
+                        <v-container hover class="ideaCard">
+                          <h4>(逆説の構造)</h4>
+                          <p>ポイント：{{ idea.contentInnovationPoint1 }}</p>
+                          <p>今までの常識：{{ idea.contentInnovationPoint2 }}</p>
+                          <h3>逆転の発想：{{ idea.contentInnovationPoint3 }}</h3>
+                        </v-container>
+                      </v-flex>
+                      <v-flex xs12 sm6 v-if="idea.contentSocialPoint">
+                        <v-container hover class="ideaCard">
+                          <h4>(どんな新しい社会が実現できるか)</h4>
+                          <h3>{{ idea.contentSocialPoint }}</h3>
+                        </v-container>
+                      </v-flex>
+                      <v-flex xs12 sm6 v-if="idea.contentBusinessPoint">
+                        <v-container hover class="ideaCard">
+                          <h4>(どうやって収益化するか)</h4>
+                          <h3>{{ idea.contentBusinessPoint }}</h3>
+                        </v-container>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </div>
+              </v-container>
+            <!-- </div> -->
+            <Comment />
           </v-container>
         </template>
       </v-flex>
-      <!-- <Comment /> -->
     </v-flex>
   </div>
 </template>
@@ -75,8 +77,12 @@ export default {
 .ideaBody
   font-size 1em
   width 100%
-  background-image url('../assets/code-coding-computer-574071-min.png')
+  // background-image url('../assets/code-coding-computer-574071-min.png')
   background-size cover
+// .idea-mask
+//   height 100%
+//   width 100%
+//   background rgba(255,255,255,0.5)
 .ideaTitle
   font-size 3em
   font-weight 700
