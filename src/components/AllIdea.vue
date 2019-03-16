@@ -50,7 +50,6 @@ import db from '@/firebase/firebaseConfig'
 export default class AllIdea extends Vue {
 
   ideas: any[] = []
-  idea: any[] = []
   isLoading: boolean = false
 
   mounted() {
@@ -66,6 +65,7 @@ export default class AllIdea extends Vue {
 
   async readFirestore() {
     try {
+      this.ideas = []
       // const db: firebase.firestore.Firestore = firebase.firestore()
       const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
       items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {

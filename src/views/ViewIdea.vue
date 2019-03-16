@@ -12,7 +12,7 @@
                 <div class="ideaContent">
                   <v-container>
                     <h2>─どんなアイデアか─</h2>
-                    <h1 v-html="idea.contentMain" style='text-align: left;'/>
+                    <h1 v-html="idea.contentMain" style='text-align: left; margin-top: 20px;'/>
                   </v-container>
                   <v-container>
                     <v-layout row column>

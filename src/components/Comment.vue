@@ -8,7 +8,7 @@
         <ul class="messages">
           <li v-for="message in messages" :key="message.id">
             <v-container class="textbox">
-              <p class="grey-text text-darken-3">{{ message.content }}</p>
+              <span class="grey-text text-darken-3">{{ message.content }}</span>
             </v-container>
           </li>
         </ul>
@@ -49,97 +49,49 @@ import db from '@/firebase/firebaseConfig'
 })
 export default class Comment extends Vue {
   
+  isLoading: boolean = false 
   newMessage: string = ''
   messages: any[] = []
 
   mounted() {
-    this.readFirestore()
+    this.getItems()
+  }
+
+  async getItems() {
+    console.log('getItems')
+    this.isLoading = true
+    await this.readFirestore()
+    this.isLoading = false
   }
 
   async readFirestore() {
-    let ref = db.collection('ideas').doc(this.$route.params.id).collection('messages')
-    // .orderBy('timestamp')
-
-    ref.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
-        if(change.type == 'added') {
-          let doc = change.doc
-          this.messages.push({
-            id: doc.id,
-            name: doc.data().name,
-            content: doc.data().content,
-            // timestamp: moment(doc.data().timestamp).format('lll')
-          })
+    try {
+      this.messages = []
+      const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').doc(this.$route.params.id).collection('messages').get()
+      items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
+        let message = {
+          id: item.id,
+          content: item.data().content
         }
+        this.messages.push(message)
       })
-    })
+      console.log(this.messages)
+    } catch (error) {
+      console.error('firebase error', error)
+    }
   }
 
   addMessage() {
     if(this.newMessage){
       db.collection('ideas').doc(this.$route.params.id).collection('messages').add({
-        message: this.newMessage,
-        // name: this.name,
-        // timestamp: Date.now()
+        content: this.newMessage,
       }).catch(err => {
         console.log(err)
       })
       this.newMessage = ''
-      // this.feedback = ''
     }
   }
 
-}
-</script>
-
-<!--
-<script>
-import db from '@/firebase/firebaseConfig'
-// import moment from 'moment'
-
-export default {
-  name: 'Comment',
-  props: ['name'],
-  data() {
-    return {
-      newMessage: null,
-      feedback: null,
-      messages: []
-    }
-  },
-  created () {
-    let ref = db.collection('ideas').doc(this.$route.params.id).collection('messages')
-    // .orderBy('timestamp')
-
-    ref.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
-        if(change.type == 'added') {
-          let doc = change.doc
-          this.messages.push({
-            id: doc.id,
-            name: doc.data().name,
-            content: doc.data().content,
-            // timestamp: moment(doc.data().timestamp).format('lll')
-          })
-        }
-      })
-    })
-  },
-  methods: {
-    addMessage() {
-      if(this.newMessage){
-        db.collection('ideas').doc(this.$route.params.id).collection('messages').add({
-          message: this.newMessage,
-          // name: this.name,
-          // timestamp: Date.now()
-        }).catch(err => {
-          console.log(err)
-        })
-        this.newMessage = null
-        this.feedback = null
-      }
-    }
-  }
 }
 </script>
 
