@@ -13,13 +13,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Navbar from '@/components/layout/Navbar.vue'
-import Footer from '@/components/layout/Footer.vue'
+// import Footer from '@/components/layout/Footer.vue'
 
 @Component({
   name: 'App',
   components: {
     Navbar,
-    Footer,
+    // Footer,
   },
 })
 export default class App extends Vue {}

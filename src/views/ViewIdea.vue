@@ -12,7 +12,7 @@
                 <div class="ideaContent">
                   <v-container>
                     <h2>─どんなアイデアか─</h2>
-                    <h1>{{ idea.contentMain }}</h1>
+                    <h1 v-html="idea.contentMain" style='text-align: left;'/>
                   </v-container>
                   <v-container>
                     <v-layout row column>
@@ -49,25 +49,26 @@
   </div>
 </template>
 
-
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import db from '@/firebase/firebaseConfig'
-import Comment from '@/components/Comment'
+import Comment from '@/components/Comment.vue'
 
-export default {
+@Component({
   name: 'ViewIdea',
   components: {
-    Comment
-  },
-  data() {
-    return {
-      idea: null
-    }
-  },
+    Comment,
+  }
+})
+export default class ViewIdea extends Vue {
+
+  idea: any = null
+
   created() {
     db.collection('ideas').doc(this.$route.params.id)
     .get().then(doc => {
         this.idea = doc.data()
+        this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
     })
   }
 }
@@ -77,12 +78,7 @@ export default {
 .ideaBody
   font-size 1em
   width 100%
-  // background-image url('../assets/code-coding-computer-574071-min.png')
   background-size cover
-// .idea-mask
-//   height 100%
-//   width 100%
-//   background rgba(255,255,255,0.5)
 .ideaTitle
   font-size 3em
   font-weight 700

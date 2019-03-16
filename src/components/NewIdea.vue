@@ -100,9 +100,6 @@ export default class NewIdea extends Vue {
   isLoading: boolean = false
   newIdeas: any[] = []
  
-   /**
-   * 登録
-   */
   async onRegist() {
     this.isLoading = true
     await this.writeFirestore()
@@ -111,9 +108,6 @@ export default class NewIdea extends Vue {
     this.$router.push({ name: 'Home'})
   }
   
-  /**
-   * Firestoreへデータを書き込む
-   */
   async writeFirestore() {
     try {
       const db: firebase.firestore.Firestore = firebase.firestore()

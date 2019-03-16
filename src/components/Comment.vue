@@ -40,6 +40,59 @@
   </div>
 </template>
 
+<script lang="ts">
+import { Component, Vue} from 'vue-property-decorator'
+import firebase from 'firebase/app'
+import db from '@/firebase/firebaseConfig'
+@Component({
+  name: 'Comment'
+})
+export default class Comment extends Vue {
+  
+  newMessage: string = ''
+  messages: any[] = []
+
+  mounted() {
+    this.readFirestore()
+  }
+
+  async readFirestore() {
+    let ref = db.collection('ideas').doc(this.$route.params.id).collection('messages')
+    // .orderBy('timestamp')
+
+    ref.onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        if(change.type == 'added') {
+          let doc = change.doc
+          this.messages.push({
+            id: doc.id,
+            name: doc.data().name,
+            content: doc.data().content,
+            // timestamp: moment(doc.data().timestamp).format('lll')
+          })
+        }
+      })
+    })
+  }
+
+  addMessage() {
+    if(this.newMessage){
+      db.collection('ideas').doc(this.$route.params.id).collection('messages').add({
+        message: this.newMessage,
+        // name: this.name,
+        // timestamp: Date.now()
+      }).catch(err => {
+        console.log(err)
+      })
+      this.newMessage = ''
+      // this.feedback = ''
+    }
+  }
+
+}
+</script>
+
+<!--
 <script>
 import db from '@/firebase/firebaseConfig'
 // import moment from 'moment'
