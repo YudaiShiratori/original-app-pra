@@ -86,42 +86,7 @@ export default class AllIdea extends Vue {
 
 }
 </script>
--->
-<!--
-<script>
-import db from '@/firebase/firebaseConfig'
-import firebase from 'firebase';
 
-export default {
-  name: 'AllIdea',
-  data() {
-    return {
-      ideas: [],
-      image_src: require('../assets/code-coding-computer-574071-min.png'),
-      isLoading: true
-    }
-  },
-  created() {
-    db.collection('ideas').get().
-    then(snapshot => {
-      snapshot.forEach(doc => {
-        let idea = doc.data()
-        idea.id = doc.id
-        this.ideas.push(idea)
-      })
-    })
-    .finally(() => 
-      this.isLoading = false
-    )
-  },
-  methods: {
-    openIdea(idea) {
-      this.$router.push({ name: 'ViewIdea', params: { id : idea.id } })
-    },
-  }
-}
-</script>
--->
 <style lang="stylus">
 .container
   max-width 800px
