@@ -55,11 +55,7 @@ export default {
       menuList: [
         {
           label: 'ログイン',
-          to: 'Login',
-        },
-        {
-          label: '新規登録',
-          to: 'Signup',
+          to: 'Login'
         },
         {
           label: 'みんなのアイデア',

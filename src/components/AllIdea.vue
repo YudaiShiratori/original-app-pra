@@ -7,7 +7,7 @@
       <v-flex class="container__body">
         <!-- <v-flex xs12 sm10 style="margin-top: 30px;"> -->
             <h2>アイデア一覧</h2>
-            <v-container v-for="idea in ideas" :key="idea.id" >
+            <v-container v-for="idea in ideas" :key="idea.id">
               <!-- <v-layout row column>v-cloak
                 <v-flex xs order-lg2> -->
                   <v-card class="idea-area">
@@ -40,41 +40,56 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue} from 'vue-property-decorator'
+import firebase from 'firebase/app'
 import db from '@/firebase/firebaseConfig'
-import firebase from 'firebase';
+@Component({
+  name: 'AllIdea'
+})
+export default class AllIdea extends Vue {
 
-export default {
-  name: 'AllIdea',
-  data() {
-    return {
-      ideas: [],
-      image_src: require('../assets/code-coding-computer-574071-min.png'),
-      isLoading: true
-    }
-  },
-  created() {
-    db.collection('ideas').get().
-    then(snapshot => {
-      snapshot.forEach(doc => {
-        let idea = doc.data()
-        idea.id = doc.id
+  ideas: any[] = []
+  isLoading: boolean = false
+
+  mounted() {
+    this.getItems()
+  }
+
+  async getItems() {
+    console.log('getItems')
+    this.isLoading = true
+    await this.readFirestore()
+    this.isLoading = false
+  }
+
+  async readFirestore() {
+    try {
+      this.ideas = []
+      // const db: firebase.firestore.Firestore = firebase.firestore()
+      const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
+      items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
+        let idea = item.data()
+        idea.id = item.id
+        idea.title = idea.title.replace(/\n/g, '<br>')
         this.ideas.push(idea)
       })
-    })
-    .finally(() => 
-      this.isLoading = false
-    )
-  },
-  methods: {
-    openIdea(idea) {
-      this.$router.push({ name: 'ViewIdea', params: { id : idea.id } })
-    },
+      console.log(this.ideas)
+    } catch (error) {
+      console.error('firebase error', error)
+    }
   }
+
+  openIdea(idea: any) {
+    this.$router.push({ name: 'ViewIdea', params: { id : idea.id } })
+  }
+
 }
 </script>
--->
+
 <style lang="stylus">
+.container
+  max-width 800px
 .catchyTitle
   font-size 8vh
   color yellow
@@ -110,70 +125,3 @@ export default {
   color: #bbb
   font-size 2em
 </style>
-
-<!--
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import firebase from 'firebase'
-
-@Component({
-  name: 'AllIdea'
-})
-export default class NewIdea extends Vue {
-
-  isLoading: boolean = false
-
-  ideas: any[] = []
-
-  ImagenamePath: string
-  Image: any
-  frStorage: firebase.storage.Storage = firebase.storage()
-
-  created() {
-    this.getItems()
-  }
-
-  /**
-   * 取得
-   */
-  async getItems() {
-    console.log('getItems')
-    this.isLoading = true
-    await this.readFirestore()
-    this.isLoading = false
-  }
-
-  /**
-   * Firestoreからデータを取得
-   */
-  async readFirestore() {
-    try {
-      this.ideas = []
-      const db: firebase.firestore.Firestore = firebase.firestore()
-      const ideas: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
-      ideas.docs.forEach((idea: firebase.firestore.QueryDocumentSnapshot) => {
-        this.ideas.push(idea.data())
-      })
-      console.log(this.ideas)
-    } catch (error) {
-      console.log('firebase error', error)
-    }
-  }
-
-  openIdea(idea: any) {
-    this.$router.push({ name: 'ViewIdea', params: { id : idea.id } })
-  }
-
-  async download () {
-    try {
-        let path = this.ImagenamePath
-        let pathRef = this.frStorage.ref()
-        let result = await pathRef.child(path).getDownloadURL()
-        return result
-    } catch (error) {
-        throw error
-    }
-  }
-}
-</script>
--->

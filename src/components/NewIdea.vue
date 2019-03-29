@@ -1,21 +1,22 @@
 <template>
   <div class="new-idea">
     <v-flex class="container__body">
-      <v-flex xs12 sm6 offset-sm3>
-        <h3>あなたのアイデアで世界を変えよう！</h3>
+      <h3>あなたのアイデアで世界を変えよう！</h3>
+      <br>
+      <v-flex xs12 sm12 class="idea-form">
           <v-form ref="form">
-            <v-container xs12 sm12 style="padding: 0;">
+            <v-container xs12 sm12>
               <h2>あなたのアイデア</h2>
               <v-container>
-                <v-flex xs12>
-                <v-text-field
+                <v-flex xs12 sm12>
+                <v-textarea
                   label="コンセプト"
                   placeholder="あなたのビジネスを一言で説明してください："
                   outline
                   v-model="title"
-                ></v-text-field>
+                ></v-textarea>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 sm12>
                 <v-textarea
                   outline
                   label="具体的な内容："
@@ -25,33 +26,33 @@
                 <h2>ヒント</h2><span>*必ずしも入力せずとも大丈夫です</span>
                 <h3>創造性：</h3>
                 <h4>逆説の構造</h4>
-                <v-text-field
+                <v-textarea
                   label="起点"
                   outline
                   v-model="contentInnovationPoint1"
-                ></v-text-field>
-                <v-text-field
+                ></v-textarea>
+                <v-textarea
                   label="定説"
                   outline
                   v-model="contentInnovationPoint2"
-                ></v-text-field>
-                <v-text-field
+                ></v-textarea>
+                <v-textarea
                   label="逆説"
                   outline
                   v-model="contentInnovationPoint3"
-                ></v-text-field>
+                ></v-textarea>
                 <h3>社会性：</h3>
-                <v-text-field
+                <v-textarea
                   label="どんな新しい社会が実現できるか"
                   outline
                   v-model="contentSocialPoint"
-                ></v-text-field>
+                ></v-textarea>
                 <h3>経済合理性：</h3>
-                <v-text-field
+                <v-textarea
                   label="どうやって収益化するか"
                   outline
                   v-model="contentBusinessPoint"
-                ></v-text-field>
+                ></v-textarea>
                 </v-flex>
                 <div id="app">
                   <h2>↓画像↓</h2>
@@ -99,9 +100,6 @@ export default class NewIdea extends Vue {
   isLoading: boolean = false
   newIdeas: any[] = []
  
-   /**
-   * 登録
-   */
   async onRegist() {
     this.isLoading = true
     await this.writeFirestore()
@@ -110,9 +108,6 @@ export default class NewIdea extends Vue {
     this.$router.push({ name: 'Home'})
   }
   
-  /**
-   * Firestoreへデータを書き込む
-   */
   async writeFirestore() {
     try {
       const db: firebase.firestore.Firestore = firebase.firestore()
@@ -161,3 +156,7 @@ export default class NewIdea extends Vue {
   // }
 }
 </script>
+<style lang="stylus">
+.idea-form
+  background white
+</style>
