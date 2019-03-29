@@ -53,14 +53,10 @@ export default {
       toolbarTitle: '僕らのビジネスアイデア',
       isDrawer: false,
       menuList: [
-        // {
-        //   label: 'ログイン',
-        //   to: 'Login',
-        // },
-        // {
-        //   label: '新規登録',
-        //   to: 'Signup',
-        // },
+        {
+          label: 'ログイン',
+          to: 'Login'
+        },
         {
           label: 'みんなのアイデア',
           to: 'Home',
