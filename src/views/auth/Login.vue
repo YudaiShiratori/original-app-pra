@@ -72,14 +72,23 @@
             </v-flex>
           </v-flex>
         </v-card>
-        <v-bottom-nav>
+        <!-- <v-bottom-nav> -->
           <v-btn @click="LoginMode()">
             <span>ログイン</span>
           </v-btn>
           <v-btn @click="SigninMode()">
             <span>新規登録</span>
           </v-btn>
-        </v-bottom-nav>
+          <v-btn
+            @click="TwitterLogin()"
+            round
+            large
+            :loading="isLoading"
+            :disabled="isLoading"
+            class="social twitter white--text">
+            Twitterでログイン
+          </v-btn>
+        <!-- </v-bottom-nav> -->
        </v-flex>
     </v-flex>
   </div>
@@ -235,5 +244,28 @@ export default class Login extends Vue {
   SigninMode() {
     this.LoginOrSigninMode = false
   }
+
+  async TwitterLogin() {
+    try {
+      this.isLoading = true
+      const provider = new firebase.auth.TwitterAuthProvider()
+      const result = await firebase.auth().signInWithPopup(provider)
+      console.log(result)
+      const user = firebase.auth().currentUser
+      if (user !== null) {
+        console.log('user', user.uid)
+      }
+      this.$router.push({ name: 'AllIdea' })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 </script>
+
+<style lang="stylus">
+.social
+  text-transform none
+.theme--light.v-btn:not(.v-btn--icon):not(.v-btn--flat).twitter
+  background-color #00aced
+</style>

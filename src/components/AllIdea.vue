@@ -8,7 +8,7 @@
         <!-- <v-flex xs12 sm10 style="margin-top: 30px;"> -->
             <h2>アイデア一覧</h2>
             <v-container v-for="idea in ideas" :key="idea.id">
-              <!-- <v-layout row column>v-cloak
+              <!-- <v-layout row column>
                 <v-flex xs order-lg2> -->
                   <v-card class="idea-area">
                     <v-container>
@@ -114,14 +114,14 @@ export default class AllIdea extends Vue {
   background-color black
   opacity 0.8
 .before-load-content
-  position: absolute
-  top: 0
-  left: 0
-  display: flex
-  align-items: center
-  justify-content: center
-  width: 100%
-  height: 100%
-  color: #bbb
+  position absolute
+  top 0
+  left 0
+  display flex
+  align-items center
+  justify-content center
+  width 100%
+  height 100%
+  color #bbb
   font-size 2em
 </style>
