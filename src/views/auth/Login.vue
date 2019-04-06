@@ -2,7 +2,32 @@
   <div class="container">
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
-       <v-card class="container" v-if="LoginOrSigninMode == true">
+        <div>
+          <v-btn
+            @click="TwitterLogin()"
+            round
+            :loading="isLoading"
+            :disabled="isLoading"
+            class="social twitter white--text">
+            Twitterでログイン
+          </v-btn>
+          <v-btn
+            @click="FacebookLogin()"
+            round
+            :loading="isLoading"
+            :diabled="isLoading"
+            color="blue"
+            class="social facebook white--text">
+            Facebookでログイン
+          </v-btn>
+          <v-btn @click="LoginMode()">
+            <span>ログイン</span>
+          </v-btn>
+          <v-btn @click="SigninMode()">
+            <span>新規登録</span>
+          </v-btn>
+        </div>
+       <v-card class="container" v-if="LoginOrSigninMode == true" style='margin-top: 2em;'>
           <h3>ログイン</h3>
           <v-text-field
             v-model="loginEmail"
@@ -73,29 +98,7 @@
           </v-flex>
         </v-card>
         <!-- <v-bottom-nav> -->
-          <v-btn @click="LoginMode()">
-            <span>ログイン</span>
-          </v-btn>
-          <v-btn @click="SigninMode()">
-            <span>新規登録</span>
-          </v-btn>
-          <v-btn
-            @click="TwitterLogin()"
-            round
-            :loading="isLoading"
-            :disabled="isLoading"
-            class="social twitter white--text">
-            Twitterでログイン
-          </v-btn>
-          <v-btn
-            @click="FacebookLogin()"
-            round
-            :loading="isLoading"
-            :diabled="isLoading"
-            color="blue"
-            class="social facebook white--text">
-            Facebookでログイン
-          </v-btn>
+          
         <!-- </v-bottom-nav> -->
        </v-flex>
     </v-flex>
@@ -126,7 +129,7 @@ export default class Login extends Vue {
   isLoginShowPassword: boolean = false
 
   LoginOrSigninMode: boolean = true
-  
+ 
   mounted () {
     this.getItems()
   }
