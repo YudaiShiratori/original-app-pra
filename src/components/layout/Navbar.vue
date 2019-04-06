@@ -52,18 +52,18 @@ export default class Navbar extends Vue {
 
   toolbarTitle: string = '僕らのビジネスアイデア'
   isDrawer: boolean = false
-  menuList: { label: string, to: string }[] = [
+  menuList: { label: string }[] = [
     {
       label: 'ログイン',
-      to: 'Login',
+      // to: 'Login',
     },
     {
       label: 'みんなのアイデア',
-      to: 'Home',
+      // to: 'Home',
     },
     {
       label: 'アイデア投稿',
-      to: 'NewIdea',
+      // to: 'NewIdea',
     }
   ]
 

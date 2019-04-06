@@ -82,11 +82,19 @@
           <v-btn
             @click="TwitterLogin()"
             round
-            large
             :loading="isLoading"
             :disabled="isLoading"
             class="social twitter white--text">
             Twitterでログイン
+          </v-btn>
+          <v-btn
+            @click="FacebookLogin()"
+            round
+            :loading="isLoading"
+            :diabled="isLoading"
+            color="blue"
+            class="social facebook white--text">
+            Facebookでログイン
           </v-btn>
         <!-- </v-bottom-nav> -->
        </v-flex>
@@ -256,6 +264,22 @@ export default class Login extends Vue {
         console.log('user', user.uid)
       }
       this.$router.push({ name: 'AllIdea' })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async FacebookLogin() {
+    try {
+      this.isLoading = true
+      const provider = new firebase.auth.FacebookAuthProvider()
+      const result = await firebase.auth().signInWithPopup(provider)
+      console.log(result)
+      const user = firebase.auth().currentUser
+      if (user !== null) {
+        console.log('user', user.uid)
+      }
+      this.$router.push({ name: 'AllIdea'})
     } catch (error) {
       console.error(error)
     }
