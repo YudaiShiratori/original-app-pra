@@ -263,7 +263,7 @@ export default class Login extends Vue {
       if (user !== null) {
         console.log('user', user.uid)
       }
-      this.$router.push({ name: 'AllIdea' })
+      this.$router.push({ name: 'Home' })
     } catch (error) {
       console.error(error)
     }
@@ -279,7 +279,7 @@ export default class Login extends Vue {
       if (user !== null) {
         console.log('user', user.uid)
       }
-      this.$router.push({ name: 'AllIdea'})
+      this.$router.push({ name: 'Home' })
     } catch (error) {
       console.error(error)
     }
