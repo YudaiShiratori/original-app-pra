@@ -64,10 +64,10 @@ export default class Navbar extends Vue {
     {
       label: 'アイデア投稿',
       to: 'NewIdea',
-    }
+    },
   ]
 
-  onClickNavigationItem(menu) {
+  onClickNavigationItem( menu: any ) {
     this.$router.push({ name: menu.to })
   }
   

@@ -26,7 +26,7 @@
                   v-model="newMessage"
                 />
                 <v-btn
-                  color="red"
+                  color="blue"
                   class="white--text"
                   @click.prevent="addMessage">
                   アドバイスを投稿
