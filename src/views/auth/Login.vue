@@ -3,29 +3,26 @@
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
         <div>
-          <v-btn
-            @click="TwitterLogin()"
-            round
-            :loading="isLoading"
-            :disabled="isLoading"
-            class="social twitter white--text">
-            Twitterでログイン
-          </v-btn>
-          <v-btn
-            @click="FacebookLogin()"
-            round
-            :loading="isLoading"
-            :diabled="isLoading"
-            color="blue"
-            class="social facebook white--text">
-            Facebookでログイン
-          </v-btn>
           <v-btn @click="LoginMode()">
             <span>ログイン</span>
           </v-btn>
           <v-btn @click="SigninMode()">
             <span>新規登録</span>
           </v-btn>
+          <img 
+            src='@/assets/Twitter_icon.png'
+            @click="TwitterLogin()"
+            :loading="isLoading"
+            :diabled="isLoading"
+            width="60px"
+            />
+          <img 
+            src='@/assets/Facebook_icon.png'
+            @click="FacebookLogin()"
+            :loading="isLoading"
+            :diabled="isLoading"
+            width="60px"
+            />
         </div>
        <v-card class="container" v-if="LoginOrSigninMode == true" style='margin-top: 2em;'>
           <h3>ログイン</h3>

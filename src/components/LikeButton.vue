@@ -19,7 +19,7 @@
         class="white--text">
         いいねする
       </v-btn>
-      <v-img src="../../assets/like.png"></v-img>
+      <img src="@/assets/like.png"></img>
     </div>
   </div>
 </template>
