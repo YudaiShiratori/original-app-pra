@@ -42,6 +42,7 @@
               </v-container>
             <!-- </div> -->
             <Comment />
+            <LikeButton />
           </v-container>
         </template>
       </v-flex>
@@ -53,11 +54,12 @@
 import { Component, Vue } from 'vue-property-decorator'
 import db from '@/firebase/firebaseConfig'
 import Comment from '@/components/Comment.vue'
-
+import LikeButton from '@/components/LikeButton.vue'
 @Component({
   name: 'ViewIdea',
   components: {
     Comment,
+    LikeButton,
   }
 })
 export default class ViewIdea extends Vue {

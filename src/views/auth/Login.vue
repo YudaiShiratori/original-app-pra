@@ -2,7 +2,29 @@
   <div class="container">
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
-       <v-card class="container" v-if="LoginOrSigninMode == true">
+        <div>
+          <v-btn @click="LoginMode()">
+            <span>ログイン</span>
+          </v-btn>
+          <v-btn @click="SigninMode()">
+            <span>新規登録</span>
+          </v-btn>
+          <img 
+            src='@/assets/Twitter_icon.png'
+            @click="TwitterLogin()"
+            :loading="isLoading"
+            :diabled="isLoading"
+            width="60px"
+            />
+          <img 
+            src='@/assets/Facebook_icon.png'
+            @click="FacebookLogin()"
+            :loading="isLoading"
+            :diabled="isLoading"
+            width="60px"
+            />
+        </div>
+       <v-card class="container" v-if="LoginOrSigninMode == true" style='margin-top: 2em;'>
           <h3>ログイン</h3>
           <v-text-field
             v-model="loginEmail"
@@ -72,14 +94,9 @@
             </v-flex>
           </v-flex>
         </v-card>
-        <v-bottom-nav>
-          <v-btn @click="LoginMode()">
-            <span>ログイン</span>
-          </v-btn>
-          <v-btn @click="SigninMode()">
-            <span>新規登録</span>
-          </v-btn>
-        </v-bottom-nav>
+        <!-- <v-bottom-nav> -->
+          
+        <!-- </v-bottom-nav> -->
        </v-flex>
     </v-flex>
   </div>
@@ -109,7 +126,7 @@ export default class Login extends Vue {
   isLoginShowPassword: boolean = false
 
   LoginOrSigninMode: boolean = true
-  
+ 
   mounted () {
     this.getItems()
   }
@@ -235,5 +252,44 @@ export default class Login extends Vue {
   SigninMode() {
     this.LoginOrSigninMode = false
   }
+
+  async TwitterLogin() {
+    try {
+      this.isLoading = true
+      const provider = new firebase.auth.TwitterAuthProvider()
+      const result = await firebase.auth().signInWithPopup(provider)
+      console.log(result)
+      const user = firebase.auth().currentUser
+      if (user !== null) {
+        console.log('user', user.uid)
+      }
+      this.$router.push({ name: 'Home' })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async FacebookLogin() {
+    try {
+      this.isLoading = true
+      const provider = new firebase.auth.FacebookAuthProvider()
+      const result = await firebase.auth().signInWithPopup(provider)
+      console.log(result)
+      const user = firebase.auth().currentUser
+      if (user !== null) {
+        console.log('user', user.uid)
+      }
+      this.$router.push({ name: 'Home' })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 </script>
+
+<style lang="stylus">
+.social
+  text-transform none
+.theme--light.v-btn:not(.v-btn--icon):not(.v-btn--flat).twitter
+  background-color #00aced
+</style>

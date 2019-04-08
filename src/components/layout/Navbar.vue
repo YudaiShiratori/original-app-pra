@@ -43,41 +43,34 @@
   </div>
 </template>
 
-<script>
-// import firebase from 'firebase'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+@Component({
+  name: 'Navbar'
+})
+export default class Navbar extends Vue {
 
-export default {
-  name: 'Navbar',
-  data() {
-    return {
-      toolbarTitle: '僕らのビジネスアイデア',
-      isDrawer: false,
-      menuList: [
-        {
-          label: 'ログイン',
-          to: 'Login'
-        },
-        {
-          label: 'みんなのアイデア',
-          to: 'Home',
-        },
-        {
-          label: 'アイデア投稿',
-          to: 'NewIdea',
-        },
-      ],
-    } 
-  },
-  methods: {
-    logout() {
-      firebase.auth().signOut().then(() => {
-        this.$router.push({ name: 'Login' })
-      })
+  toolbarTitle: string = '僕らのビジネスアイデア'
+  isDrawer: boolean = false
+  menuList: { label: string, to: string }[] = [
+    {
+      label: 'ログイン',
+      to: 'Login',
     },
-    onClickNavigationItem(menu) {
-      this.$router.push({name: menu.to})
+    {
+      label: 'みんなのアイデア',
+      to: 'Home',
     },
+    {
+      label: 'アイデア投稿',
+      to: 'NewIdea',
+    },
+  ];
+
+  onClickNavigationItem( menu: any ) {
+    this.$router.push({ name: menu.to })
   }
+  
 }
 </script>
 
