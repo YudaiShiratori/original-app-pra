@@ -1,25 +1,23 @@
 <template>
   <div class="like-button">
-    <div>
-      <v-btn 
-        v-if="isLiked" 
-        @click="deleteLike()"
-        color="red"
-        :loading="isLoading"
-        :disabled="isLoading"
-        class="white--text">
-        いいねを取り消す
-      </v-btn>
-      <v-btn 
-        v-else 
+    <div style="padding: 50px;">
+      <div v-if="isLiked">
+        <h2>いいね!済み</h2>
+        <img 
+          src="@/assets/liked.png"
+          @click="deleteLike()"
+          :loading="isLoading"
+          height="60px"/>
+      </div>
+      <div v-else>
+        <h2>いいね！ボタン</h2>
+        <img 
+        src="@/assets/like.png"
         @click="registerLike()"
-        color="black"
         :loading="isLoading"
         :disabled="isLoading"
-        class="white--text">
-        いいねする
-      </v-btn>
-      <img src="@/assets/like.png"></img>
+        height="60px"/>
+      </div> 
     </div>
   </div>
 </template>
