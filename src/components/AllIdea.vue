@@ -66,7 +66,6 @@ export default class AllIdea extends Vue {
   async readFirestore() {
     try {
       this.ideas = []
-      // const db: firebase.firestore.Firestore = firebase.firestore()
       const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
       items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
         let idea = item.data()

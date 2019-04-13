@@ -40,10 +40,31 @@ export default class LikeButton extends Vue {
 
   registerLike() {
     this.isLiked = true
+    // this.transactionFirestore(this.)
   }
 
   deleteLike() {
     this.isLiked = false
+  }
+
+  async transactionFirestore(item: any): Promise<any> {
+    let result: any
+    try {
+      const db: firebase.firestore.Firestore = firebase.firestore()
+      return db.runTransaction(async (tr: firebase.firestore.Transaction) => {
+        const collection: firebase.firestore.CollectionReference = db.collection('users/{userId}/liked')
+        const ref: firebase.firestore.DocumentReference = collection.doc(item.uid)
+        const doc = await tr.get(ref)
+        // if (doc.exists) {
+          
+        // } else {
+          
+        // }
+      })
+    } catch (error) {
+      console.error(error)
+      return result
+    }
   }
 
 
