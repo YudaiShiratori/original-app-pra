@@ -4,7 +4,7 @@
       <v-flex xs12 sm6 offset-sm3>
         <div>
           <img 
-            src='@/assets/Twitter_icon.png'
+            :src='TwitterURL'
             @click="TwitterLogin()"
             :loading="isLoading"
             :diabled="isLoading"
@@ -12,7 +12,7 @@
             style="margin: 10px;"
             />
           <img 
-            src='@/assets/Facebook_icon.png'
+            :src='FacebookURL'
             @click="FacebookLogin()"
             :loading="isLoading"
             :diabled="isLoading"
@@ -130,6 +130,10 @@ export default class Login extends Vue {
   isLoginShowPassword: boolean = false
 
   LoginOrSigninMode: boolean = true
+
+  TwitterURL: string = '@/assets/Twitter_icon.png'
+  FacebookURL: string = '@/assets/Facebook_icon.png'
+
  
   mounted () {
     this.getItems()

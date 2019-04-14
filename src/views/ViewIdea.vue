@@ -4,43 +4,41 @@
       <v-flex xs12 sm12>
         <template>
           <v-container class="ideaBody">
-            <!-- <div class="idea-mask"> -->
-              <div class="ideaTitle">
-                {{ idea.title }}
+            <div class="ideaTitle">
+              {{ idea.title }}
+            </div>
+            <v-container style="padding: 0;">
+              <div class="ideaContent">
+                <v-container>
+                  <h2>─どんなアイデアか─</h2>
+                  <h1 v-html="idea.contentMain" style='text-align: left; margin-top: 20px;'/>
+                </v-container>
+                <v-container>
+                  <v-layout row column>
+                    <v-flex xs12 sm6 v-if="idea.contentInnovationPoint3">
+                      <v-container hover class="ideaCard">
+                        <h4>(逆説の構造)</h4>
+                        <p>ポイント：{{ idea.contentInnovationPoint1 }}</p>
+                        <p>今までの常識：{{ idea.contentInnovationPoint2 }}</p>
+                        <h3>逆転の発想：{{ idea.contentInnovationPoint3 }}</h3>
+                      </v-container>
+                    </v-flex>
+                    <v-flex xs12 sm6 v-if="idea.contentSocialPoint">
+                      <v-container hover class="ideaCard">
+                        <h4>(どんな新しい社会が実現できるか)</h4>
+                        <h3>{{ idea.contentSocialPoint }}</h3>
+                      </v-container>
+                    </v-flex>
+                    <v-flex xs12 sm6 v-if="idea.contentBusinessPoint">
+                      <v-container hover class="ideaCard">
+                        <h4>(どうやって収益化するか)</h4>
+                        <h3>{{ idea.contentBusinessPoint }}</h3>
+                      </v-container>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
               </div>
-              <v-container style="padding: 0;">
-                <div class="ideaContent">
-                  <v-container>
-                    <h2>─どんなアイデアか─</h2>
-                    <h1 v-html="idea.contentMain" style='text-align: left; margin-top: 20px;'/>
-                  </v-container>
-                  <v-container>
-                    <v-layout row column>
-                      <v-flex xs12 sm6 v-if="idea.contentInnovationPoint3">
-                        <v-container hover class="ideaCard">
-                          <h4>(逆説の構造)</h4>
-                          <p>ポイント：{{ idea.contentInnovationPoint1 }}</p>
-                          <p>今までの常識：{{ idea.contentInnovationPoint2 }}</p>
-                          <h3>逆転の発想：{{ idea.contentInnovationPoint3 }}</h3>
-                        </v-container>
-                      </v-flex>
-                      <v-flex xs12 sm6 v-if="idea.contentSocialPoint">
-                        <v-container hover class="ideaCard">
-                          <h4>(どんな新しい社会が実現できるか)</h4>
-                          <h3>{{ idea.contentSocialPoint }}</h3>
-                        </v-container>
-                      </v-flex>
-                      <v-flex xs12 sm6 v-if="idea.contentBusinessPoint">
-                        <v-container hover class="ideaCard">
-                          <h4>(どうやって収益化するか)</h4>
-                          <h3>{{ idea.contentBusinessPoint }}</h3>
-                        </v-container>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </div>
-              </v-container>
-            <!-- </div> -->
+            </v-container>
             <Comment />
             <LikeButton />
           </v-container>
