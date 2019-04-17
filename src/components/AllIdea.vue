@@ -38,7 +38,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
 import db from '@/firebase/firebaseConfig'
-import Model from '@/model/model.ts'
+// import IdeaModel from '@/model/model.ts'
 @Component({
   name: 'AllIdea'
 })
@@ -73,15 +73,16 @@ export default class AllIdea extends Vue {
     //   console.error('firebase error', error)
     // }
 
-    const users: Model.IdeaModel[] = []
-    const items: firebase.firestore.QuerySnapshot = await this.IdeaModel.db.collection('ideas').get()
-    items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
-      if (item.exists) {
-        const user = new Model.IdeaModel(item.id, item.data())
-        users.push(user)
-      }
-    })
-    console.log('users', users)
+    // const ideas: IdeaModel[] = []
+    // const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
+    // items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
+    //   if (item.exists) {
+    //     const idea = new IdeaModel(item.id, item.data())
+    //     ideas.push(idea)
+    //   }
+    // })
+    // console.log('ideas', ideas)
+    getAllIdea()
   }
 
   openIdea(idea: any) {

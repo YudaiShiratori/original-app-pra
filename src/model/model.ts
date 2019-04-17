@@ -9,11 +9,23 @@ class FirestoreBase {
   }
 }
 
-// tslint:disable-next-line:max-classes-per-file
+
+async function getAllIdea() {
+  const ideas: IdeaModel[] = []
+  const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
+  items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
+    if (item.exists) {
+      const idea = new IdeaModel(item.id, item.data())
+      ideas.push(idea)
+    }
+  })
+  console.log('ideas', ideas)
+}
+
 class IdeaModel extends FirestoreBase {
 
   uid: string = ''
-  ideas: any[] = []
+  // ideas: any[] = []
   title: string = ''
   contentMain: string = ''
   contentBusinessPoint: string = ''
@@ -21,11 +33,12 @@ class IdeaModel extends FirestoreBase {
   contentInnovationPoint1: string = ''
   contentInnovationPoint2: string = ''
   contentInnovationPoint3: string = ''
-
-  public collection: firebase.firestore.CollectionReference;
+  db: firebase.firestore.Firestore
+  collection: firebase.firestore.CollectionReference
 
   constructor(id?: string, data?: any) {
     super()
+    this.db = firebase.firestore()
     this.collection = this.db.collection('ideas')
     if (id !== undefined && id !== null) {
       this.uid = id;
@@ -49,8 +62,8 @@ class IdeaModel extends FirestoreBase {
   public async save() {
     await this.collection.doc(this.uid).set({
       uid: this.uid,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      // createdAt: new Date(),
+      // updatedAt: new Date(),
       title: this.title,
       contentMain: this.contentMain,
       contentBusinessPoint: this.contentBusinessPoint,
@@ -64,6 +77,8 @@ class IdeaModel extends FirestoreBase {
     await this.collection.doc(id).get();
   }
 }
+
+// export default IdeaModel
 
 // class User {
   
