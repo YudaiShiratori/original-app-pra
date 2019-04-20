@@ -53,6 +53,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import db from '@/firebase/firebaseConfig'
 import Comment from '@/components/Comment.vue'
 import LikeButton from '@/components/LikeButton.vue'
+import IdeaModel from '@/model/model.ts'
 @Component({
   name: 'ViewIdea',
   components: {

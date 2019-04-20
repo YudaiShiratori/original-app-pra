@@ -9,7 +9,6 @@ class FirestoreBase {
   }
 }
 
-
 async function getAllIdea() {
   const ideas: IdeaModel[] = []
   const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
@@ -22,6 +21,7 @@ async function getAllIdea() {
   console.log('ideas', ideas)
 }
 
+// tslint:disable-next-line:max-classes-per-file
 class IdeaModel extends FirestoreBase {
 
   uid: string = ''
@@ -78,7 +78,7 @@ class IdeaModel extends FirestoreBase {
   }
 }
 
-// export default IdeaModel
+export { IdeaModel };
 
 // class User {
   

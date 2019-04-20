@@ -98,9 +98,6 @@
             </v-flex>
           </v-flex>
         </v-card>
-        <!-- <v-bottom-nav> -->
-          
-        <!-- </v-bottom-nav> -->
        </v-flex>
     </v-flex>
   </div>
