@@ -111,18 +111,6 @@ export default class NewIdea extends Vue {
   
   async writeFirestore() {
     try {
-      // const db: firebase.firestore.Firestore = firebase.firestore()
-      // const collection: firebase.firestore.CollectionReference = db.collection('ideas')
-      // const id: string = collection.doc().id
-      // const result = await collection.doc(id).set({
-      //   title: this.title,
-      //   contentMain: this.contentMain,
-      //   contentSocialPoint: this.contentSocialPoint,
-      //   contentBusinessPoint: this.contentBusinessPoint,
-      //   contentInnovationPoint1: this.contentInnovationPoint1,
-      //   contentInnovationPoint2: this.contentInnovationPoint2,
-      //   contentInnovationPoint3: this.contentInnovationPoint3
-      // })
       const item = new IdeaModel()
       item.title = this.title,
       item.contentMain= this.contentMain,

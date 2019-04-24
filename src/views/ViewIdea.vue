@@ -53,7 +53,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import db from '@/firebase/firebaseConfig'
 import Comment from '@/components/Comment.vue'
 import LikeButton from '@/components/LikeButton.vue'
-import IdeaModel from '@/model/model.ts'
+import IdeaModel from '@/model/IdeaModel'
 @Component({
   name: 'ViewIdea',
   components: {
@@ -72,6 +72,7 @@ export default class ViewIdea extends Vue {
         this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
     })
   }
+
 }
 </script>
 
