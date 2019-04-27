@@ -53,7 +53,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import db from '@/firebase/firebaseConfig'
 import Comment from '@/components/Comment.vue'
 import LikeButton from '@/components/LikeButton.vue'
-import IdeaModel from '@/model/IdeaModel'
+import { IdeaModel } from '@/model/IdeaModel'
 @Component({
   name: 'ViewIdea',
   components: {
@@ -71,7 +71,14 @@ export default class ViewIdea extends Vue {
         this.idea = doc.data()
         this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
     })
+    // this.getIdeaPage()
   }
+
+  // async getIdeaPage(){
+  //   const item = new IdeaModel()
+  //   this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
+  //   await item.get(this.$route.params.id)
+  // }
 
 }
 </script>

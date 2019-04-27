@@ -60,17 +60,17 @@ export default class AllIdea extends Vue {
 
   async readFirestore() {
     try {
-      // this.ideas = []
-      // const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
-      // items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
-      //   let idea = item.data()
-      //   idea.id = item.id
-      //   idea.title = idea.title.replace(/\n/g, '<br>')
-      //   this.ideas.push(idea)
-      // })
-      // console.log(this.ideas)
-      const ideas = new DataSource()
-      await ideas.getAllIdea()
+      this.ideas = []
+      const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
+      items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
+        let idea = item.data()
+        idea.id = item.id
+        idea.title = idea.title.replace(/\n/g, '<br>')
+        this.ideas.push(idea)
+      })
+      console.log(this.ideas)
+      // const ideas = new DataSource()
+      // await ideas.getAllIdea()
     } catch (error) {
       console.error('firebase error', error)
     }
