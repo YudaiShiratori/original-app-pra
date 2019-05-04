@@ -3,26 +3,30 @@
     <v-flex class="container__body">
       <v-flex xs12 sm6 offset-sm3>
         <div>
+          <img 
+            :src='TwitterURL'
+            @click="TwitterLogin()"
+            :loading="isLoading"
+            :diabled="isLoading"
+            width="50px"
+            style="margin: 10px;"
+            />
+          <img 
+            :src='FacebookURL'
+            @click="FacebookLogin()"
+            :loading="isLoading"
+            :diabled="isLoading"
+            width="50px"
+            style="margin: 10px;"
+            />
+        </div>
+        <div>
           <v-btn @click="LoginMode()">
             <span>ログイン</span>
           </v-btn>
           <v-btn @click="SigninMode()">
             <span>新規登録</span>
           </v-btn>
-          <img 
-            src='@/assets/Twitter_icon.png'
-            @click="TwitterLogin()"
-            :loading="isLoading"
-            :diabled="isLoading"
-            width="60px"
-            />
-          <img 
-            src='@/assets/Facebook_icon.png'
-            @click="FacebookLogin()"
-            :loading="isLoading"
-            :diabled="isLoading"
-            width="60px"
-            />
         </div>
        <v-card class="container" v-if="LoginOrSigninMode == true" style='margin-top: 2em;'>
           <h3>ログイン</h3>
@@ -94,9 +98,6 @@
             </v-flex>
           </v-flex>
         </v-card>
-        <!-- <v-bottom-nav> -->
-          
-        <!-- </v-bottom-nav> -->
        </v-flex>
     </v-flex>
   </div>
@@ -126,6 +127,10 @@ export default class Login extends Vue {
   isLoginShowPassword: boolean = false
 
   LoginOrSigninMode: boolean = true
+
+  TwitterURL: string = '@/assets/Twitter_icon.png'
+  FacebookURL: string = '@/assets/Facebook_icon.png'
+
  
   mounted () {
     this.getItems()
