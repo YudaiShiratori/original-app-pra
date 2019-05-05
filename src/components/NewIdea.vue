@@ -80,7 +80,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
-import { IdeaModel } from '@/model/IdeaModel'
+import IdeaModel from '@/model/IdeaModel'
 
 @Component({
   name: 'NewIdea'

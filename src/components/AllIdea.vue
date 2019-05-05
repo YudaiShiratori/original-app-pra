@@ -38,7 +38,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
 import db from '@/firebase/firebaseConfig'
-import { DataSource } from '@/model/DataSource'
+import DataSource from '@/model/DataSource'
 @Component({
   name: 'AllIdea'
 })
@@ -69,8 +69,8 @@ export default class AllIdea extends Vue {
         this.ideas.push(idea)
       })
       console.log(this.ideas)
-      // const ideas = new DataSource()
-      // await ideas.getAllIdea()
+      // const items = new DataSource()
+      // await items.getAllIdea()
     } catch (error) {
       console.error('firebase error', error)
     }

@@ -1,5 +1,5 @@
 import firebase from 'firebase/app'
-import { IdeaModel } from './IdeaModel'
+import IdeaModel from './IdeaModel'
 
 class DataSource {
   public async getAllIdea() {
@@ -18,4 +18,4 @@ class DataSource {
   }
 }
 
-export { DataSource }
+export default DataSource;

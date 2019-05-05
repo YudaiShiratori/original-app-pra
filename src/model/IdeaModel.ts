@@ -57,4 +57,4 @@ class IdeaModel extends FirestoreBase {
   }
 }
 
-export { IdeaModel };
+export default IdeaModel;
