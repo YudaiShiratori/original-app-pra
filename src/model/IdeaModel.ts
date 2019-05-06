@@ -52,8 +52,8 @@ class IdeaModel extends FirestoreBase {
       contentInnovationPoint3: this.contentInnovationPoint3,
     }, { merge: true });
   }
-  public async get(id: string) {
-    await this.collection.doc(id).get();
+  public async get() {
+    await this.collection.doc(this.uid).get();
   }
 }
 

@@ -3,7 +3,7 @@
     <v-flex class="container__body">
       <v-flex xs12 sm12>
         <template>
-          <v-container class="ideaBody">
+          <v-container class="ideaBody" v-if="idea!==null">
             <div class="ideaTitle">
               {{ idea.title }}
             </div>
@@ -63,21 +63,23 @@ import IdeaModel from '@/model/IdeaModel'
 })
 export default class ViewIdea extends Vue {
 
-  idea: any = null
+  idea: IdeaModel | null = null
 
-  created() {
-    db.collection('ideas').doc(this.$route.params.id)
-    .get().then(doc => {
-        this.idea = doc.data()
-        this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
-    })
-    // this.getIdeaPage()
+  async created() {
+    // db.collection('ideas').doc(this.$route.params.id)
+    // .get().then(doc => {
+    //     this.idea = doc.data()
+    //     this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
+    // })
+    await this.getIdeaPage()
+    console.log(this.idea)
   }
 
-  // async getIdeaPage(){
-  //   const item = new IdeaModel()
-  //   await item.get(this.$route.params.id)
-  // }
+  async getIdeaPage(){
+    // const item = new IdeaModel()
+    this.idea = new IdeaModel(this.$router.params.uid)
+    await this.idea.get(this.idea.uid)
+  }
 
 }
 </script>

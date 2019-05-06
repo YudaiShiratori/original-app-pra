@@ -6,11 +6,11 @@
     <section v-else>
       <v-flex class="container__body">
         <h2>アイデア一覧</h2>
-        <v-container v-for="idea in ideas" :key="idea.id">
+        <v-container v-for="idea in ideas" :key="idea.uid">
           <v-card class="idea-area">
             <v-container>
               <p class="ideaCatchTitle">{{ idea.title }}</p>
-          　  <router-link :to="{ name: 'ViewIdea', params: { id: idea.id } }">詳しく見る！</router-link>
+          　  <router-link :to="{ name: 'ViewIdea', params: { id: idea.uid } }">詳しく見る！</router-link>
             </v-container>
           </v-card>
         </v-container>
@@ -39,12 +39,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
 import db from '@/firebase/firebaseConfig'
 import DataSource from '@/model/DataSource'
+import IdeaModel from '../model/IdeaModel';
 @Component({
   name: 'AllIdea'
 })
 export default class AllIdea extends Vue {
 
-  ideas: any[] = []
+  ideas: IdeaModel[] = []
   isLoading: boolean = false
 
   mounted() {
@@ -60,24 +61,25 @@ export default class AllIdea extends Vue {
 
   async readFirestore() {
     try {
-      this.ideas = []
-      const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
-      items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
-        let idea = item.data()
-        idea.id = item.id
-        idea.title = idea.title.replace(/\n/g, '<br>')
-        this.ideas.push(idea)
-      })
-      console.log(this.ideas)
-      // const items = new DataSource()
-      // await items.getAllIdea()
+      // this.ideas = []
+      // const items: firebase.firestore.QuerySnapshot = await db.collection('ideas').get()
+      // items.docs.forEach((item: firebase.firestore.QueryDocumentSnapshot) => {
+      //   let idea = item.data()
+      //   idea.id = item.id
+      //   idea.title = idea.title.replace(/\n/g, '<br>')
+      //   this.ideas.push(idea)
+      // })
+      // console.log(this.ideas)
+
+      const items = new DataSource()
+      this.ideas = await items.getAllIdea()
     } catch (error) {
       console.error('firebase error', error)
     }
   }
 
-  openIdea(idea: any) {
-    this.$router.push({ name: 'ViewIdea', params: { id : idea.id } })
+  openIdea(idea: IdeaModel) {
+    this.$router.push({ name: 'ViewIdea', params: { id : idea.uid } })
   }
 
 }
