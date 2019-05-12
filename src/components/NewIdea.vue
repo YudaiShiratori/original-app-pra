@@ -113,12 +113,12 @@ export default class NewIdea extends Vue {
     try {
       const item = new IdeaModel()
       item.title = this.title,
-      item.contentMain= this.contentMain,
-      item.contentSocialPoint= this.contentSocialPoint,
-      item.contentBusinessPoint= this.contentBusinessPoint,
-      item.contentInnovationPoint1= this.contentInnovationPoint1,
-      item.contentInnovationPoint2= this.contentInnovationPoint2,
-      item.contentInnovationPoint3= this.contentInnovationPoint3
+      item.contentMain = this.contentMain,
+      item.contentSocialPoint = this.contentSocialPoint,
+      item.contentBusinessPoint = this.contentBusinessPoint,
+      item.contentInnovationPoint1 = this.contentInnovationPoint1,
+      item.contentInnovationPoint2 = this.contentInnovationPoint2,
+      item.contentInnovationPoint3 = this.contentInnovationPoint3
       await item.save()
     } catch (error) {
       console.log('firebase error', error)

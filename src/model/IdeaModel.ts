@@ -1,10 +1,9 @@
 import firebase from 'firebase/app'
-import { FirestoreBase } from './FirestoreBase'
+import FirestoreBase from './FirestoreBase'
 
 class IdeaModel extends FirestoreBase {
 
   uid: string = ''
-  // ideas: any[] = []
   title: string = ''
   contentMain: string = ''
   contentBusinessPoint: string = ''
@@ -12,18 +11,20 @@ class IdeaModel extends FirestoreBase {
   contentInnovationPoint1: string = ''
   contentInnovationPoint2: string = ''
   contentInnovationPoint3: string = ''
-  db: firebase.firestore.Firestore
-  collection: firebase.firestore.CollectionReference
+  // ideas: any[] = []
+  // db: firebase.firestore.Firestore
+  // collection: firebase.firestore.CollectionReference
 
-  constructor(id: string | null = null,  data: any | null = null) {
-    super(id, data)
-    this.db = firebase.firestore()
-    this.collection = this.db.collection('ideas')
-    if (id !== undefined && id !== null) {
-      this.uid = id;
-    } else {
-      this.uid = this.collection.doc().id;
-    }
+  constructor(collectionName: string = 'ideas', id: string | null = null, data: any | null = null) {
+    super(collectionName, id, data)
+
+    // this.db = firebase.firestore()
+    // this.collectionRef = this.db.collection('ideas')
+    // if (id !== undefined && id !== null) {
+    //   this.uid = id;
+    // } else {
+    //   this.uid = this.collection.doc().id;
+    // }
 
     if (data !== null && id !== null) {
       this.title = 'title' in data ? data.title : undefined;
@@ -38,11 +39,11 @@ class IdeaModel extends FirestoreBase {
     }
   }
 
-  public async save() {
-    await this.collection.doc(this.uid).set({
+  async save() {
+    await this.collectionRef.doc(this.uid).set({
       uid: this.uid,
-      // createdAt: new Date(),
-      // updatedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       title: this.title,
       contentMain: this.contentMain,
       contentBusinessPoint: this.contentBusinessPoint,
@@ -52,8 +53,9 @@ class IdeaModel extends FirestoreBase {
       contentInnovationPoint3: this.contentInnovationPoint3,
     }, { merge: true });
   }
-  public async get() {
-    await this.collection.doc(this.uid).get();
+
+  async get() {
+    await this.collectionRef.doc(this.uid).get();
   }
 }
 

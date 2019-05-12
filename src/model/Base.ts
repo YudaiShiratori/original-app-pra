@@ -18,8 +18,6 @@ export class Base {
   constructor(collectionName: string, id: string | null = null) {
     this.db = firebase.firestore()
     this.collectionName = collectionName
-    //?
-    // this.path = `${collectionName}`
     this.collectionRef = this.db.collection(this.collectionName)
     this.storage = firebase.storage()
     if (id !== null) {
@@ -41,7 +39,7 @@ export class Base {
 
   async delete() {
     try {
-      const batch: firebase.firestore.WriteBacth = this.db.batch()
+      const batch: firebase.firestore.WriteBatch = this.db.batch()
       batch.delete(this.documentRef)
       await batch.commit()
       this.clear()
