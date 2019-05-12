@@ -55,9 +55,9 @@
                 ></v-textarea>
                 </v-flex>
                 <div id="app">
-                  <h2>↓画像↓</h2>
-                  <img v-show="uploadedImage" :src="uploadedImage" />
-                  <input type="file" v-on:change="onFileChange">
+                  <h2>画像</h2>
+                  <img :src="ImageData()" />
+                  <input type="file" v-on:change="onFileChange()">
                 </div>
                 <v-flex xs12>
                 <p v-if="feedback">{{ feedback }}</p>
@@ -81,6 +81,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
 import IdeaModel from '@/model/IdeaModel'
+import { FileInfo } from '@/ts/interface/FileInfo'
 
 @Component({
   name: 'NewIdea'
@@ -100,7 +101,9 @@ export default class NewIdea extends Vue {
   // ImagenamePath: string = ''
   // frStorage: firebase.storage.Storage = firebase.storage()
   // newIdeas: any[] = []
- 
+
+  fileInfo: FileInfo = { data: null, file: null, url: null}
+
   async onRegist() {
     this.isLoading = true
     await this.writeFirestore()
@@ -136,8 +139,30 @@ export default class NewIdea extends Vue {
     // this.uploadedImage = { url: '' }
   }
   
-  onFileChange() {
-    console.log('onFileChange')
+  get imageData() {
+    return this.fileInfo.data !== null ? this.fileInfo.data : this.fileInfo.url
+  }
+
+  onFileChange(e: Event) {
+    const event = (e.target as any) as HTMLInputElement
+    const files = event.files
+    
+    const isCancelEvent = !files || files.length === 0
+    if (isCancelEvent) {
+      return
+    }
+    if (files !== null) {
+      this.createImage(files[0])
+    }
+  }
+
+  createImage(file: File) {
+    const reader = new FileReader()
+    reader.onload = (e: any) => {
+      this.fileInfo.data = e.target.result
+    }
+    reader.readAsDataURL(file)
+    this.fileInfo.file = file
   }
 
   // async upload () {
