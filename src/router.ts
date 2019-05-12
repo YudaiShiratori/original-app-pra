@@ -3,11 +3,9 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import ViewIdea from './views/ViewIdea.vue';
 import NewIdea from '@/components/NewIdea.vue';
-import Signup from './views/auth/Signup.vue';
 import Login from './views/auth/Login.vue';
 
 import LandingPage from './views/LandingPage.vue';
-
 
 Vue.use(Router);
 
@@ -34,11 +32,6 @@ export default new Router({
       path: '/new-idea',
       name: 'NewIdea',
       component: NewIdea,
-    },
-    {
-      path: '/signup',
-      name: 'Signup',
-      component: Signup,
     },
     {
       path: '/login',

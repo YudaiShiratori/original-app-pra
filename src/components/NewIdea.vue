@@ -95,11 +95,11 @@ export default class NewIdea extends Vue {
   contentInnovationPoint1: string = ''
   contentInnovationPoint2: string = ''
   contentInnovationPoint3: string = ''
-  uploadedImage: any = { url: '' }
-  ImagenamePath: string = ''
-  frStorage: firebase.storage.Storage = firebase.storage()
   isLoading: boolean = false
-  newIdeas: any[] = []
+  // uploadedImage: any = { url: '' }
+  // ImagenamePath: string = ''
+  // frStorage: firebase.storage.Storage = firebase.storage()
+  // newIdeas: any[] = []
  
   async onRegist() {
     this.isLoading = true
@@ -133,7 +133,7 @@ export default class NewIdea extends Vue {
     this.contentInnovationPoint1 = ''
     this.contentInnovationPoint2 = ''
     this.contentInnovationPoint3 = ''
-    this.uploadedImage = { url: '' }
+    // this.uploadedImage = { url: '' }
   }
   
   onFileChange() {
