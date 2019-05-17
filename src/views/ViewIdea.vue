@@ -50,10 +50,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import db from '@/firebase/firebaseConfig'
+import db from '../firebase/firebaseConfig'
 import Comment from '@/components/Comment.vue'
 import LikeButton from '@/components/LikeButton.vue'
-import IdeaModel from '@/model/IdeaModel'
+import IdeaModel from '../model/IdeaModel'
 @Component({
   name: 'ViewIdea',
   components: {
@@ -77,7 +77,7 @@ export default class ViewIdea extends Vue {
 
   async getIdeaPage(){
     // const item = new IdeaModel()
-    this.idea = new IdeaModel(this.$router.params.uid)
+    this.idea = new IdeaModel(this.$route.params.uid)
     await this.idea.get(this.idea.uid)
   }
 
@@ -98,18 +98,18 @@ export default class ViewIdea extends Vue {
   letter-spacing 1px
   background-color rgba(220, 220, 220, 0.9)
   display inline-block
-  border solid 3px #2F4F4F/*線*/
+  border solid 3px #2F4F4F
 .ideaContent
   margin 20px 0
   line-height 3em
-  border solid 3px #2F4F4F/*線*/
+  border solid 3px #2F4F4F
   background-color rgba(220, 220, 220, 0.9)
 .ideaCard
   padding 0.5em 1em
   margin 2em 0
   font-size 1.3em
-  border solid 3px #2F4F4F/*線*/
-  border-radius 10px/*角の丸み*/
+  border solid 3px #2F4F4F
+  border-radius 10px
   background-color rgba(220, 220, 220, 0.6)
   display inline-block
 </style>

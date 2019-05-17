@@ -24,7 +24,8 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/view-idea/:id',
+      // path: '/view-idea/:id',
+      path: '/view-idea/:uid',
       name: 'ViewIdea',
       component: ViewIdea,
     },

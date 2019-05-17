@@ -15,6 +15,8 @@ class IdeaModel extends FirestoreBase {
   // db: firebase.firestore.Firestore
   // collection: firebase.firestore.CollectionReference
 
+  image?: StorageFile
+
   constructor(collectionName: string = 'ideas', id: string | null = null, data: any | null = null) {
     super(collectionName, id, data)
 
@@ -54,8 +56,32 @@ class IdeaModel extends FirestoreBase {
     }, { merge: true });
   }
 
-  async get() {
+  async get(id: string) {
     await this.collectionRef.doc(this.uid).get();
+  }
+
+
+
+  async uploadFile(file: File, filename: string = 'filename') {
+    try {
+      const storagePath: string = `${this.path}/${this.uid}/${filename}`
+      const ref = this.storage.ref().child(storagePath)
+      // const uploadMetadata: firebase.storage.UploadMetadata = {
+      //   contentType: 'image/jpeg',
+      // }
+      const result = await ref.put(file)
+      const downloadUrl = await ref.getDownloadURL()
+      const meta = result.metadata
+      console.log(result, meta)
+      this.image = {
+        name: filename,
+        url: downloadUrl,
+        fileType: meta.contentType !== null && meta.contentType !== undefined ? meta.contentType : '',
+      }
+      await this.save()
+    } catch (error) {
+      throw error
+    }
   }
 }
 
