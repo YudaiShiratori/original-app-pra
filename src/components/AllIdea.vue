@@ -10,13 +10,13 @@
           <v-card class="idea-area">
             <v-container>
               <p class="ideaCatchTitle">{{ idea.title }}</p>
-          　  <router-link :to="{ name: 'ViewIdea', params: { id: idea.uid } }">詳しく見る！</router-link>
+          　  <router-link :to="{ name: 'ViewIdea', params: { uid: idea.uid } }">詳しく見る！</router-link>
             </v-container>
           </v-card>
         </v-container>
         <v-container>
           <h2>新着・おすすめアイデア</h2>
-          <v-container>
+          <!-- <v-container>
             <v-carousel 
               xs12 sm12
               hide-delimiters
@@ -27,7 +27,7 @@
                 </v-carousel-item>
               </v-card>
             </v-carousel>
-          </v-container>
+          </v-container> -->
         </v-container>
       </v-flex>
     </section>
@@ -37,8 +37,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
-import db from '@/firebase/firebaseConfig'
-import DataSource from '@/model/DataSource'
+import db from '../firebase/firebaseConfig'
+import DataSource from '../model/DataSource'
 import IdeaModel from '../model/IdeaModel';
 @Component({
   name: 'AllIdea'
@@ -67,11 +67,6 @@ export default class AllIdea extends Vue {
       console.error('firebase error', error)
     }
   }
-
-  openIdea(idea: IdeaModel) {
-    this.$router.push({ name: 'ViewIdea', params: { id : idea.uid } })
-  }
-
 }
 </script>
 

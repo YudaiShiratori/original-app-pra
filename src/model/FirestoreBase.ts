@@ -24,14 +24,14 @@ export default class FirestoreBase {
   collectionRef: firebase.firestore.CollectionReference
   documentRef: firebase.firestore.DocumentReference
   batch: firebase.firestore.WriteBatch
-  storage: firebase.firestore.Storage
+  // storage: firebase.firestore.Storage
 
   constructor(collectionName: string, id: string | null = null, data: any | null = null) {
     this.db = firebase.firestore()
     this.collectionName = collectionName
     this.collectionRef = this.db.collection(this.collectionName)
     this.batch = this.db.batch()
-    this.storage = firebase.storage()
+    // this.storage = firebase.storage()
     if (id !== null) {
       this.uid = id
     } else {

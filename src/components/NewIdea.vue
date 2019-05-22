@@ -135,7 +135,6 @@ export default class NewIdea extends Vue {
     this.contentInnovationPoint1 = ''
     this.contentInnovationPoint2 = ''
     this.contentInnovationPoint3 = ''
-    // this.uploadedImage = { url: '' }
   }
   
   get ImageData() {

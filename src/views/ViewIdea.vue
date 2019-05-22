@@ -72,13 +72,11 @@ export default class ViewIdea extends Vue {
     //     this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
     // })
     await this.getIdeaPage()
-    console.log(this.idea)
   }
 
   async getIdeaPage(){
-    // const item = new IdeaModel()
     this.idea = new IdeaModel(this.$route.params.uid)
-    await this.idea.get(this.idea.uid)
+    await this.idea.getPage()
   }
 
 }
