@@ -3,10 +3,9 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import ViewIdea from './views/ViewIdea.vue';
 import NewIdea from '@/components/NewIdea.vue';
-import Signup from './views/auth/Signup.vue';
 import Login from './views/auth/Login.vue';
-import Pra from '@/components/Pra.vue';
 
+import LandingPage from './views/LandingPage.vue';
 
 Vue.use(Router);
 
@@ -15,12 +14,18 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/lp',
+      name: 'LandingPage',
+      component: LandingPage,
+    },
+    {
       path: '/',
       name: 'Home',
       component: Home,
     },
     {
-      path: '/view-idea/:id',
+      // path: '/view-idea/:id',
+      path: '/view-idea/:uid',
       name: 'ViewIdea',
       component: ViewIdea,
     },
@@ -30,19 +35,9 @@ export default new Router({
       component: NewIdea,
     },
     {
-      path: '/signup',
-      name: 'Signup',
-      component: Signup,
-    },
-    {
       path: '/login',
       name: 'Login',
       component: Login,
-    },
-    {
-      path: '/pra',
-      name: 'Pra',
-      component: Pra,
     },
   ],
 });

@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue} from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import firebase from 'firebase/app'
 @Component({
   name: 'LikeButton'

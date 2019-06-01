@@ -3,7 +3,7 @@
     <v-flex class="container__body">
       <v-flex xs12 sm12>
         <template>
-          <v-container class="ideaBody">
+          <v-container class="ideaBody" v-if="idea!==null">
             <div class="ideaTitle">
               {{ idea.title }}
             </div>
@@ -50,10 +50,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import db from '@/firebase/firebaseConfig'
+import db from '../firebase/firebaseConfig'
 import Comment from '@/components/Comment.vue'
 import LikeButton from '@/components/LikeButton.vue'
-import { IdeaModel } from '@/model/IdeaModel'
+import IdeaModel from '../model/IdeaModel'
 @Component({
   name: 'ViewIdea',
   components: {
@@ -63,22 +63,21 @@ import { IdeaModel } from '@/model/IdeaModel'
 })
 export default class ViewIdea extends Vue {
 
-  idea: any = null
+  idea: IdeaModel | null = null
 
-  created() {
-    db.collection('ideas').doc(this.$route.params.id)
-    .get().then(doc => {
-        this.idea = doc.data()
-        this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
-    })
-    // this.getIdeaPage()
+  async created() {
+    // db.collection('ideas').doc(this.$route.params.id)
+    // .get().then(doc => {
+    //     this.idea = doc.data()
+    //     this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
+    // })
+    await this.getIdeaPage()
   }
 
-  // async getIdeaPage(){
-  //   const item = new IdeaModel()
-  //   this.idea.contentMain = this.idea.contentMain.replace(/\n/g, '<br>')
-  //   await item.get(this.$route.params.id)
-  // }
+  async getIdeaPage(){
+    this.idea = new IdeaModel(this.$route.params.uid)
+    await this.idea.getPage()
+  }
 
 }
 </script>
@@ -97,19 +96,18 @@ export default class ViewIdea extends Vue {
   letter-spacing 1px
   background-color rgba(220, 220, 220, 0.9)
   display inline-block
-  border solid 3px #2F4F4F/*線*/
+  border solid 3px #2F4F4F
 .ideaContent
   margin 20px 0
   line-height 3em
-  border solid 3px #2F4F4F/*線*/
-  // border-radius 10px/*角の丸み*/
+  border solid 3px #2F4F4F
   background-color rgba(220, 220, 220, 0.9)
 .ideaCard
   padding 0.5em 1em
   margin 2em 0
   font-size 1.3em
-  border solid 3px #2F4F4F/*線*/
-  border-radius 10px/*角の丸み*/
+  border solid 3px #2F4F4F
+  border-radius 10px
   background-color rgba(220, 220, 220, 0.6)
   display inline-block
 </style>
